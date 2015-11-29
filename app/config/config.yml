@@ -49,6 +49,15 @@ assetic:
         #yui_css:
         #    jar: "%kernel.root_dir%/Resources/java/yuicompressor-2.4.7.jar"
 
+    assets:
+        css:
+            inputs:
+                - %kernel.root_dir%/../bower_components/bootstrap/dist/css/bootstrap.min.css
+        js:
+            inputs:
+                - %kernel.root_dir%/../bower_components/jquery/dist/jquery.min.js
+                - %kernel.root_dir%/../bower_components/bootstrap/dist/js/bootstrap.min.js
+
 # Doctrine Configuration
 doctrine:
     dbal:

@@ -1,38 +1,42 @@
 <?php
 namespace AppBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Column;
+use Doctrine\ORM\Mapping\Entity;
+use Doctrine\ORM\Mapping\GeneratedValue;
+use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\Table;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="`user`")
+ * @Entity
+ * @Table(name="`user`")
  */
 class User
 {
     /**
-     * @ORM\Column(type="bigint")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Column(type="bigint")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @Column(type="string")
      */
     protected $firstName;
 
     /**
-     * @ORM\Column(type="string")
+     * @Column(type="string")
      */
     protected $lastName;
 
     /**
-     * @ORM\Column(type="string")
+     * @Column(type="string")
      */
     protected $email;
 
     /**
-     * @ORM\Column(type="string")
+     * @Column(type="string")
      */
     protected $password;
 

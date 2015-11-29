@@ -19,6 +19,11 @@ class Service
     private $id;
 
     /**
+     * @Column(type="string")
+     */
+    private $title;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -32,5 +37,21 @@ class Service
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 }

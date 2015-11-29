@@ -10,7 +10,8 @@ CREATE TABLE "user"
 );
 CREATE TABLE service
 (
-    id bigserial NOT NULL,
+    id    bigserial NOT NULL,
+    title varchar   NOT NULL,
 
     PRIMARY KEY (id)
 );

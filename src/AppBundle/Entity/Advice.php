@@ -26,6 +26,11 @@ class Advice
     protected $lastName;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $email;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -71,5 +76,21 @@ class Advice
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
 }

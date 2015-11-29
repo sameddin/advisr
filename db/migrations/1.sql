@@ -8,3 +8,9 @@ CREATE TABLE "user"
 
     PRIMARY KEY (id)
 );
+CREATE TABLE service
+(
+    id bigserial NOT NULL,
+
+    PRIMARY KEY (id)
+);

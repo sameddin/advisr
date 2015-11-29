@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a0f1611d718bdfabb8a5bf5cbf0c7eda",
-    "content-hash": "54545183d958eba102fc69b8a64c2ea7",
+    "hash": "660be2d6e7c7b8d607244b4a0a2530e9",
+    "content-hash": "2f3b9d2dd624512cdbea07f41647d9ec",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1105,6 +1105,68 @@
                 "psr-3"
             ],
             "time": "2015-10-14 12:51:02"
+        },
+        {
+            "name": "ornicar/gravatar-bundle",
+            "version": "1.1.3",
+            "target-dir": "Ornicar/GravatarBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/henrikbjorn/GravatarBundle.git",
+                "reference": "19914a353381994bb56ed76a52819a329c643c84"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/henrikbjorn/GravatarBundle/zipball/19914a353381994bb56ed76a52819a329c643c84",
+                "reference": "19914a353381994bb56ed76a52819a329c643c84",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "symfony/framework-bundle": "~2.0"
+            },
+            "conflict": {
+                "twig/twig": "<1.12"
+            },
+            "require-dev": {
+                "twig/extensions": "1.0.*"
+            },
+            "suggest": {
+                "twig/twig": "For gravatar twig extension usage"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Ornicar\\GravatarBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thibault Duplessis",
+                    "email": "thibault.duplessis@gmail.com"
+                },
+                {
+                    "name": "Henrik Bjørnskov",
+                    "email": "henrik@bjrnskov.dk"
+                }
+            ],
+            "description": "This bundles provides a Gravatar API various utilities to work with it in templates",
+            "keywords": [
+                "Symfony2",
+                "gravatar",
+                "templating",
+                "twig"
+            ],
+            "time": "2015-08-31 10:21:29"
         },
         {
             "name": "psr/log",

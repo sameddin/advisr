@@ -18,27 +18,27 @@ class User
      * @Id
      * @GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
     /**
      * @Column(type="string")
      */
-    protected $firstName;
+    private $firstName;
 
     /**
      * @Column(type="string")
      */
-    protected $lastName;
+    private $lastName;
 
     /**
      * @Column(type="string")
      */
-    protected $email;
+    private $email;
 
     /**
      * @Column(type="string")
      */
-    protected $password;
+    private $password;
 
     /**
      * @return mixed

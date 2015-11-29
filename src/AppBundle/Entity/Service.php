@@ -22,6 +22,13 @@ class Service
     private $id;
 
     /**
+     * @ManyToOne(targetEntity="User", inversedBy="services")
+     *
+     * @var User
+     */
+    private $user;
+
+    /**
      * @Column(type="string")
      *
      * @var string
@@ -36,18 +43,27 @@ class Service
     private $description;
 
     /**
-     * @ManyToOne(targetEntity="User", inversedBy="services")
-     *
-     * @var User
-     */
-    private $user;
-
-    /**
      * @return int
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
     }
 
     /**
@@ -80,21 +96,5 @@ class Service
     public function setDescription($description)
     {
         $this->description = $description;
-    }
-
-    /**
-     * @return User
-     */
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    /**
-     * @param User $user
-     */
-    public function setUser(User $user)
-    {
-        $this->user = $user;
     }
 }

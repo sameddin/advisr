@@ -5,6 +5,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
+use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
  * @Entity
@@ -27,6 +28,13 @@ class Service
      * @Column(type="string")
      */
     private $description;
+
+    /**
+     * @ManyToOne(targetEntity="User", inversedBy="services")
+     *
+     * @var User
+     */
+    private $user;
 
     /**
      * @return mixed
@@ -74,5 +82,21 @@ class Service
     public function setDescription($description)
     {
         $this->description = $description;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
     }
 }

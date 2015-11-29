@@ -11,8 +11,10 @@ CREATE TABLE "user"
 CREATE TABLE service
 (
     id          bigserial NOT NULL,
+    user_id     bigint    NOT NULL,
     title       varchar   NOT NULL,
     description varchar   NOT NULL,
 
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES "user"
 );

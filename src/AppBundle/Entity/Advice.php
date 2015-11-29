@@ -21,6 +21,11 @@ class Advice
     protected $firstName;
 
     /**
+     * @ORM\Column(type="string")
+     */
+    protected $lastName;
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -50,5 +55,21 @@ class Advice
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param mixed $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
     }
 }

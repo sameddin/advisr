@@ -1,3 +1,4 @@
 AppBundle\Entity\Advice:
     advice{1..100}:
         firstName: <firstNameMale()>
+        lastName: <lastName()>

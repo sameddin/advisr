@@ -67,7 +67,7 @@ class Service
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDescription()
     {

@@ -4,3 +4,4 @@ AppBundle\Entity\User:
         lastName: <lastName()>
         email: <email()>
         password: <password()>
+        about: <text()>

@@ -53,6 +53,13 @@ class User
     private $password;
 
     /**
+     * @Column(type="string")
+     *
+     * @var string
+     */
+    private $about;
+
+    /**
      * @OneToMany(targetEntity="Service", mappedBy="user")
      *
      * @var ArrayCollection
@@ -158,5 +165,21 @@ class User
     public function setServices($services)
     {
         $this->services = $services;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAbout()
+    {
+        return $this->about;
+    }
+
+    /**
+     * @param string $about
+     */
+    public function setAbout($about)
+    {
+        $this->about = $about;
     }
 }

@@ -19,26 +19,36 @@ class User
      * @Column(type="bigint")
      * @Id
      * @GeneratedValue(strategy="AUTO")
+     *
+     * @var int
      */
     private $id;
 
     /**
      * @Column(type="string")
+     *
+     * @var string
      */
     private $firstName;
 
     /**
      * @Column(type="string")
+     *
+     * @var string
      */
     private $lastName;
 
     /**
      * @Column(type="string")
+     *
+     * @var string
      */
     private $email;
 
     /**
      * @Column(type="string")
+     *
+     * @var string
      */
     private $password;
 
@@ -71,7 +81,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getFirstName()
     {
@@ -87,7 +97,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getLastName()
     {
@@ -103,7 +113,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getEmail()
     {
@@ -119,7 +129,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getPassword()
     {

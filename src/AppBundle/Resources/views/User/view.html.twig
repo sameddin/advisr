@@ -3,6 +3,11 @@
 {% block content %}
 <div>
     <h1 class="page">{{ user.firstName }} {{ user.lastName }}</h1>
+    <div class="row">
+        <div class="col-xs-8">
+            <div>{{ user.about }}</div>
+        </div>
+    </div>
 
     <h2>Services</h2>
     {% for service in user.services %}

@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Advice;
+use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -19,7 +19,7 @@ class UserController extends Controller
     public function listAction()
     {
         $users = $this->getDoctrine()
-            ->getRepository('AppBundle:Advice')
+            ->getRepository('AppBundle:User')
             ->findAll();
 
         return [

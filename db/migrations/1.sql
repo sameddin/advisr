@@ -1,4 +1,4 @@
-CREATE TABLE advice
+CREATE TABLE "user"
 (
     id         bigserial NOT NULL,
     first_name varchar   NOT NULL,

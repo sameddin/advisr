@@ -43,7 +43,7 @@ class Service
     private $user;
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -59,7 +59,7 @@ class Service
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
     public function setTitle($title)
     {
@@ -75,7 +75,7 @@ class Service
     }
 
     /**
-     * @param mixed $description
+     * @param string $description
      */
     public function setDescription($description)
     {

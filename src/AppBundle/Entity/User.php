@@ -65,7 +65,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -73,7 +73,7 @@ class User
     }
 
     /**
-     * @param mixed $id
+     * @param int $id
      */
     public function setId($id)
     {
@@ -89,7 +89,7 @@ class User
     }
 
     /**
-     * @param mixed $firstName
+     * @param string $firstName
      */
     public function setFirstName($firstName)
     {
@@ -105,7 +105,7 @@ class User
     }
 
     /**
-     * @param mixed $lastName
+     * @param string $lastName
      */
     public function setLastName($lastName)
     {
@@ -121,7 +121,7 @@ class User
     }
 
     /**
-     * @param mixed $email
+     * @param string $email
      */
     public function setEmail($email)
     {
@@ -137,7 +137,7 @@ class User
     }
 
     /**
-     * @param mixed $password
+     * @param string $password
      */
     public function setPassword($password)
     {

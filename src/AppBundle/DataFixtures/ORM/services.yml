@@ -1,3 +1,4 @@
 AppBundle\Entity\Service:
     service{1..100}:
         title: <word()>
+        description: <text($maxNbChars = 200)>

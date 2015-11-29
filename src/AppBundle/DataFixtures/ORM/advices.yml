@@ -3,3 +3,4 @@ AppBundle\Entity\Advice:
         firstName: <firstNameMale()>
         lastName: <lastName()>
         email: <email()>
+        password: <password()>

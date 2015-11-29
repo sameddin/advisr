@@ -16,16 +16,22 @@ class Service
      * @Column(type="bigint")
      * @Id
      * @GeneratedValue(strategy="AUTO")
+     *
+     * @var int
      */
     private $id;
 
     /**
      * @Column(type="string")
+     *
+     * @var string
      */
     private $title;
 
     /**
      * @Column(type="string")
+     *
+     * @var string
      */
     private $description;
 

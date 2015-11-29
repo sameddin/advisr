@@ -26,4 +26,18 @@ class UserController extends Controller
             'users' => $users
         ];
     }
+
+    /**
+     * @Route("/{id}", name="user.view", requirements={"id": "\d+"})
+     * @Template
+     *
+     * @param User $user
+     * @return array
+     */
+    public function viewAction(User $user)
+    {
+        return [
+            'user' => $user,
+        ];
+    }
 }

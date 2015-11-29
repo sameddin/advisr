@@ -1,0 +1,2 @@
+AppBundle\Entity\Advice:
+    advice{1..100}:

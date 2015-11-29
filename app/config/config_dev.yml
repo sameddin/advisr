@@ -46,3 +46,5 @@ assetic:
 
 #swiftmailer:
 #    delivery_address: me@example.com
+hautelook_alice:
+    loading_limit: 30

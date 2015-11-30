@@ -4,8 +4,6 @@ security:
             algorithm: plaintext
 
     providers:
-        in_memory:
-            memory: ~
         doctrine:
             entity:
                 class: AppBundle:User

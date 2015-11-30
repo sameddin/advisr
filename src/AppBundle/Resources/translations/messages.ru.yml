@@ -5,3 +5,9 @@ sign.out: Выйти
 email.placeholder: Email
 password.placeholder: Пароль
 service.list: Услуги
+user.password: Пароль
+user.password.repeat: Ещё раз пароль
+registration: Регистрация
+user.email: Email
+user.first_name: Имя
+user.last_name: Фамилия

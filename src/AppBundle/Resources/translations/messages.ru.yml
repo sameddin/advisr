@@ -11,3 +11,4 @@ registration: Регистрация
 user.email: Email
 user.first_name: Имя
 user.last_name: Фамилия
+registration.success: Ваша регистрация прошла успешно!

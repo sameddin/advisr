@@ -2,26 +2,18 @@
 
 {% block content %}
 
-    <table class="table table-condensed">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Full Name</th>
-            <th>Email</th>
-            <th>Password</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td><a href="{{ path('user.view', {id: user.id}) }}">{{ user.firstName }} {{ user.lastName }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.password }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h1>{{ 'user.list'|trans }}</h1>
+
+    {% for user in users %}
+        <ul class="list-unstyled">
+            <li>
+                <a href="{{ path('user.view', {id: user.id}) }}">
+                    <img class="img-responsive" src="{{ gravatar(user.email, 100) }}"/>
+                    <span>{{ user.firstName }} {{ user.lastName }}</span>
+                </a>
+            </li>
+        </ul>
+    {% endfor %}
 
 {% endblock %}
 

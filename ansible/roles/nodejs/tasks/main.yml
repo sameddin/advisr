@@ -1,0 +1,3 @@
+- include: ppa.yml
+- include: install.yml
+- include: bower.yml

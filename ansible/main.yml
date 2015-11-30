@@ -1,0 +1,9 @@
+- hosts: all
+  sudo: true
+  roles:
+    - common
+    - nginx
+    - php
+    - postgresql
+    - git
+    - nodejs

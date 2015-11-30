@@ -1,0 +1,7 @@
+- name: make current system user PostgreSQL superuser
+  postgresql_user: user={{ user }} password={{ user }} role_attr_flags=SUPERUSER
+  sudo_user: postgres
+
+- name: create user
+  postgresql_user: db={{ db_name }} name={{ db_user }} password={{ db_pass }}
+  sudo_user: postgres

@@ -1,0 +1,10 @@
+- name: install the vhost
+  template: src=vhost dest=/etc/nginx/sites-available/advisr
+  notify: reload nginx
+
+- name: activate the vhost
+  file: >
+    src=/etc/nginx/sites-available/advisr
+    dest=/etc/nginx/sites-enabled/advisr
+    state=link
+  notify: reload nginx

@@ -1,0 +1,3 @@
+- name: install the pool
+  template: src=pool.conf dest=/etc/php5/fpm/pool.d/advisr.conf
+  notify: restart php-fpm

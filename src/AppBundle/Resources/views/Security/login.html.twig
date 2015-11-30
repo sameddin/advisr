@@ -1,0 +1,11 @@
+{% extends '::layout.html.twig' %}
+
+{% block content %}
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error.message }}
+        </div>
+    {% endif %}
+
+    {{ form(form) }}
+{% endblock %}

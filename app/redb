@@ -1,1 +1,1 @@
-dropdb advice && createdb advice -O advice && app/console e:d:m && app/console h:f:l -n
+dropdb advisr && createdb advisr -O advisr && app/console e:d:m && app/console h:f:l -n

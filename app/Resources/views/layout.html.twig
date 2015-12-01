@@ -30,6 +30,7 @@
                 <div class="collapse navbar-collapse" id="menu">
                     <ul class="nav navbar-nav">
                         <li><a href="{{ path('user.list') }}">{{ 'user.list'|trans }}</a></li>
+                        <li><a href="{{ path('security.login') }}">{{ 'security.login'|trans }}</a></li>
                         <li><a href="{{ path('registration') }}">{{ 'registration'|trans }}</a></li>
                     </ul>
 
@@ -40,7 +41,7 @@
                         <div class="form-group">
                             <input type="password" placeholder="{{ 'password.placeholder'|trans }}" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-default">{{ 'sign.in'|trans }}</button>
+                        <a class="btn btn-default" href="#" role="button">{{ 'security.login'|trans }}</a>
                     </form>
                 </div>
             </div>

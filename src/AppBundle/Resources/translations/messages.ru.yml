@@ -12,6 +12,7 @@ user.last_name: Фамилия
 security.login: Войти
 registration.success: Ваша регистрация прошла успешно!
 common.add: Добавить
+common.edit: Изменить
 service.title: Название услуги
 service.description: Описание услуги
 service.title.placeholder: Введите название услуги

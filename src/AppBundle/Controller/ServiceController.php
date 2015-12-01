@@ -7,7 +7,9 @@ use AppBundle\Form\Type\ServiceType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @Route("/services")
@@ -34,11 +36,38 @@ class ServiceController extends Controller
      * @Template
      *
      * @param Request $request
-     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse|Response
      */
     public function addAction(Request $request)
     {
         $service = new Service();
+        $form = $this->createForm(new ServiceType(), $service);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($service);
+            $em->flush();
+
+            return $this->redirectToRoute('service.list');
+        }
+
+        return [
+            'form' => $form->createView(),
+        ];
+    }
+
+    /**
+     * @Route("/edit/{id}", name="service.edit")
+     * @Template
+     * @param Request $request
+     * @param Service $service
+     * @return RedirectResponse|Response
+     */
+    public function editAction(Request $request, Service $service) {
+
         $form = $this->createForm(new ServiceType(), $service);
 
         $form->handleRequest($request);

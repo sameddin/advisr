@@ -10,9 +10,14 @@
         <div class="panel panel-default">
             <div class="panel-heading">{{ service.title }}</div>
             <div class="panel-body">{{ service.description }}</div>
-            <div class="panel-footer"><a class="btn btn-success btn-default"
-                                         href="{{ path('service.edit', {'id': service.id  }) }}"
-                                         role="button">{{ 'common.edit'|trans }}</a></div>
+            <div class="panel-footer">
+                <a class="btn btn-success btn-default"
+                   href="{{ path('service.edit', {'id': service.id  }) }}"
+                   role="button">{{ 'common.edit'|trans }}</a>
+                <a class="btn btn-warning btn-danger"
+                   href="{{ path('service.delete', {'id': service.id  }) }}"
+                   role="button">{{ 'common.delete'|trans }}</a>
+            </div>
         </div>
     {% endfor %}
 

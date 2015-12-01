@@ -62,6 +62,7 @@ class ServiceController extends Controller
     /**
      * @Route("/edit/{id}", name="service.edit")
      * @Template
+     *
      * @param Request $request
      * @param Service $service
      * @return RedirectResponse|Response
@@ -84,5 +85,22 @@ class ServiceController extends Controller
         return [
             'form' => $form->createView(),
         ];
+    }
+
+    /**
+     * @Route("/delete/{id}", name="service.delete")
+     *
+     * @param Service $service
+     * @return RedirectResponse|Response
+     */
+    public function deleteAction(Service $service)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($service);
+        $em->flush();
+
+        return $this->redirectToRoute('service.list');
+
     }
 }

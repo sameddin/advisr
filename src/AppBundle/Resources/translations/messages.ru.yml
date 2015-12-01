@@ -13,6 +13,7 @@ security.login: Войти
 registration.success: Ваша регистрация прошла успешно!
 common.add: Добавить
 common.edit: Изменить
+common.delete: Удалить
 service.title: Название услуги
 service.description: Описание услуги
 service.title.placeholder: Введите название услуги

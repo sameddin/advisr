@@ -10,6 +10,7 @@ user.email: Email
 user.first_name: Имя
 user.last_name: Фамилия
 security.login: Войти
+security.logout: Выйти
 registration.success: Ваша регистрация прошла успешно!
 common.add: Добавить
 common.edit: Изменить

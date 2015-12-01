@@ -23,3 +23,6 @@ security:
                 username_parameter: email
                 password_parameter: password
                 provider: doctrine
+            logout:
+                path:   /logout
+                target: /

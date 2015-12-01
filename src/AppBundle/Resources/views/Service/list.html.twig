@@ -3,6 +3,9 @@
 {% block content %}
 
         <h2>{{ 'service.list'|trans }}</h2>
+
+    <a class="btn btn-default" href="{{ path('service.add') }}" role="button">{{ 'common.add'|trans }}</a>
+
         {% for service in services %}
             <div class="panel panel-default">
                 <div class="panel-heading">{{ service.title }}</div>

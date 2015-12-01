@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Service;
+use AppBundle\Form\Type\ServiceType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/services")
@@ -24,6 +26,34 @@ class ServiceController extends Controller
 
         return [
             'services' => $services
+        ];
+    }
+
+    /**
+     * @Route("/add", name="service.add")
+     * @Template
+     *
+     * @param Request $request
+     * @return array|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function addAction(Request $request)
+    {
+        $service = new Service();
+        $form = $this->createForm(new ServiceType(), $service);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($service);
+            $em->flush();
+
+            return $this->redirectToRoute('service.list');
+        }
+
+        return [
+            'form' => $form->createView(),
         ];
     }
 }

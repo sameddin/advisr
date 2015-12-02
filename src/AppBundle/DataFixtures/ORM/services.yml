@@ -3,3 +3,4 @@ AppBundle\Entity\Service:
         title: <word()>
         description: <text()>
         user: @user*
+        category: @category*

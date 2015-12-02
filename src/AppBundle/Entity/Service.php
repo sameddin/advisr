@@ -29,6 +29,13 @@ class Service
     private $user;
 
     /**
+     * @ManyToOne(targetEntity="Category", inversedBy="services")
+     *
+     * @var Category
+     */
+    private $category;
+
+    /**
      * @Column(type="string")
      *
      * @var string
@@ -64,6 +71,22 @@ class Service
     public function setUser(User $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
     }
 
     /**

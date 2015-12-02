@@ -9,20 +9,22 @@ CREATE TABLE "user"
 
     PRIMARY KEY (id)
 );
+CREATE TABLE category
+(
+    id   bigserial NOT NULL,
+    name varchar   NOT NULL,
+
+    PRIMARY KEY (id)
+);
 CREATE TABLE service
 (
     id          bigserial NOT NULL,
     user_id     bigint    NOT NULL,
+    category_id bigint    NOT NULL,
     title       varchar   NOT NULL,
     description varchar   NOT NULL,
 
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES "user"
-);
-CREATE TABLE category
-(
-    id bigserial NOT NULL,
-    name varchar NOT NULL,
-
-    PRIMARY KEY (id)
+    FOREIGN KEY (user_id) REFERENCES "user",
+    FOREIGN KEY (category_id) REFERENCES category
 );

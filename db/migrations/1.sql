@@ -19,3 +19,10 @@ CREATE TABLE service
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES "user"
 );
+CREATE TABLE category
+(
+    id bigserial NOT NULL,
+    name varchar NOT NULL,
+
+    PRIMARY KEY (id)
+);

@@ -6,7 +6,7 @@
 
     <a class="btn btn-default" href="{{ path('service.add') }}" role="button">{{ 'common.add'|trans }}</a>
 
-    {% for service in services %}
+    {% for service in pagination %}
         <div class="panel panel-default">
             <div class="panel-heading">{{ service.title }}</div>
             <div class="panel-body">{{ service.description }}</div>
@@ -20,5 +20,9 @@
             </div>
         </div>
     {% endfor %}
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
 {% endblock %}

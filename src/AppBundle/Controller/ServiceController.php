@@ -19,15 +19,26 @@ class ServiceController extends Controller
     /**
      * @Route(name="service.list")
      * @Template
+     *
+     * @param Request $request
+     * @return array
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         $services = $this->getDoctrine()
             ->getRepository('AppBundle:Service')
             ->findAll();
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $services,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return [
-            'services' => $services
+            'services' => $services,
+            'pagination' => $pagination,
         ];
     }
 

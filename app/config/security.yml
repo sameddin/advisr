@@ -23,6 +23,7 @@ security:
                 username_parameter: email
                 password_parameter: password
                 provider: doctrine
+                csrf_provider: security.csrf.token_manager
             logout:
                 path:   /logout
                 target: /

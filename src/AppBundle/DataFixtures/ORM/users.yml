@@ -1,5 +1,10 @@
 AppBundle\Entity\User:
-    user{1..100}:
+    user1:
+        firstName: Эльнур
+        lastName: Абдуррахимов
+        email: elnur@elnur.pro
+        password: password
+    user{2..100}:
         firstName: <firstNameMale()>
         lastName: <lastName()>
         email: <email()>

@@ -35,7 +35,7 @@
                         <li><a href="{{ path('registration') }}">{{ 'registration'|trans }}</a></li>
                     </ul>
 
-                    <a class="btn btn-default" href="{{ logout_path('main') }}" role="button">{{ 'security.logout'|trans }}</a>
+                    <a class="btn btn-default" href="{{ logout_url('main') }}" role="button">{{ 'security.logout'|trans }}</a>
 
                     <form class="navbar-form navbar-right" action="{{ path('security.login') }}" method="post">
                         <div class="form-group">

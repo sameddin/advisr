@@ -4,7 +4,12 @@ AppBundle\Entity\User:
         lastName: Абдуррахимов
         email: elnur@elnur.pro
         password: password
-    user{2..100}:
+    user2:
+        firstName: Самеддин
+        lastName: Пасизаде
+        email: conzole@mail.ru
+        password: password
+    user{3..100}:
         firstName: <firstNameMale()>
         lastName: <lastName()>
         email: <email()>

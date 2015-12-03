@@ -1,6 +1,12 @@
 {% extends '::layout.html.twig' %}
 
 {% block content %}
+
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}">{{ 'homepage'|trans }}</a></li>
+        <li class="active">{{ 'security.login'|trans }}</li>
+    </ol>
+
     {% if error %}
         <div class="alert alert-danger">
             {{ error.message }}

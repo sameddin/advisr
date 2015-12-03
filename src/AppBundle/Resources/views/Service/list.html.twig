@@ -2,6 +2,11 @@
 
 {% block content %}
 
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}">{{ 'homepage'|trans }}</a></li>
+        <li class="active">{{ 'service.list'|trans }}</li>
+    </ol>
+
     <h2>{{ 'service.list'|trans }}</h2>
 
     {% for service in pagination %}

@@ -2,6 +2,11 @@
 
 {% block content %}
 
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}">{{ 'homepage'|trans }}</a></li>
+        <li class="active">{{ 'user.list'|trans }}</li>
+    </ol>
+
     <h1>{{ 'user.list'|trans }}</h1>
 
     {% for user in users %}

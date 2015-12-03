@@ -1,6 +1,13 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+
+    <ol class="breadcrumb">
+        <li><a href="{{ path('homepage') }}">{{ 'homepage'|trans }}</a></li>
+        <li><a href="{{ path('service.list') }}">{{ 'service.list'|trans }}</a></li>
+        <li class="active">{{ 'common.edit'|trans }}</li>
+    </ol>
+
     {{ form(form) }}
 {% endblock %}
 

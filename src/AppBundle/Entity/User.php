@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping\GeneratedValue;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\Table;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -15,6 +16,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 /**
  * @Entity
  * @Table(name="`user`")
+ * @UniqueEntity("email")
  */
 class User implements UserInterface
 {
@@ -44,11 +46,11 @@ class User implements UserInterface
     private $lastName;
 
     /**
-     * @Column(type="string", length=255)
+     * @Column(name="email", type="string", length=255, unique=true)
      * @NotBlank()
      * @Email()
      *
-     * @var string
+     * @var string $email
      */
     private $email;
 

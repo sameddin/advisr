@@ -27,3 +27,6 @@ security:
             logout:
                 path:   /logout
                 target: /
+            remember_me:
+                secret: "%secret%"
+                always_remember_me: true

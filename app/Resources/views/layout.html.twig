@@ -35,7 +35,7 @@
                         <li><a href="{{ path('registration') }}">{{ 'registration'|trans }}</a></li>
                     </ul>
 
-                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                {% if is_granted(expression('is_authenticated()')) %}
                     <ul class="nav navbar-nav navbar-right">
                         <li><a class="btn btn-link" href="{{ logout_url('main') }}" role="button">{{ 'security.logout'|trans }}</a></li>
                     </ul>

@@ -1,3 +1,3 @@
-db_name: advice
-db_user: advice
-db_pass: advice
+db_name: advisr
+db_user: advisr
+db_pass: advisr

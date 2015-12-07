@@ -3,22 +3,35 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * @Route("/users")
+ * @Route("/users", service="app.user_controller")
  */
-class UserController extends Controller
+class UserController
 {
+    /**
+     * @var EntityManager
+     */
+    private $em;
+
+    /**
+     * @param EntityManager $em
+     */
+    public function __construct(EntityManager $em)
+    {
+        $this->em = $em;
+    }
+
     /**
      * @Route(name="user.list")
      * @Template
      */
     public function listAction()
     {
-        $users = $this->getDoctrine()
+        $users = $this->em
             ->getRepository('AppBundle:User')
             ->findAll();
 

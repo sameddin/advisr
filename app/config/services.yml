@@ -9,3 +9,10 @@ services:
         arguments: [ @doctrine.orm.entity_manager ]
     app.home_controller:
         class: AppBundle\Controller\HomeController
+    app.registration_controller:
+        class: AppBundle\Controller\RegistrationController
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @form.factory
+            - @session
+            - @router

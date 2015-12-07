@@ -1,34 +1,77 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\UserType;
+use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\RouterInterface;
 
-class RegistrationController extends Controller
+/**
+ * @Route("/register", service="app.registration_controller")
+ */
+class RegistrationController
 {
     /**
-     * @Route("/register", name="registration")
+     * @var EntityManager
+     */
+    private $em;
+
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
+     * @var Session
+     */
+    private $session;
+
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    /**
+     * @param EntityManager $em
+     * @param FormFactoryInterface $formFactory
+     * @param Session $session
+     * @param RouterInterface $router
+     */
+    public function __construct(EntityManager $em, FormFactoryInterface $formFactory, Session $session, RouterInterface $router)
+    {
+        $this->em = $em;
+        $this->formFactory = $formFactory;
+        $this->session = $session;
+        $this->router = $router;
+    }
+
+    /**
+     * @Route(name="registration")
      * @Template
+     *
+     * @param Request $request
+     * @return RedirectResponse|Response
      */
     public function registerAction(Request $request)
     {
         $user = new User();
-        $form = $this->createForm(new UserType(), $user);
+        $form = $this->formFactory->create(new UserType(), $user);
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+            $this->em->persist($user);
+            $this->em->flush();
 
-            $this->addFlash('success', 'registration.success');
+            $this->session->getFlashBag()->add('success', 'registration.success');
 
-            return $this->redirectToRoute('homepage');
+            return new RedirectResponse($this->router->generate('homepage'));
         }
 
         return [

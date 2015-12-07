@@ -7,3 +7,5 @@ services:
     app.user_controller:
         class: AppBundle\Controller\UserController
         arguments: [ @doctrine.orm.entity_manager ]
+    app.home_controller:
+        class: AppBundle\Controller\HomeController

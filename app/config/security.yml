@@ -1,7 +1,8 @@
 security:
     encoders:
         AppBundle\Entity\User:
-            algorithm: plaintext
+            algorithm: bcrypt
+            cost: 4
 
     providers:
         doctrine:

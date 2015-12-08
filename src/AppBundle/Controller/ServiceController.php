@@ -1,36 +1,71 @@
 <?php
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Service;
 use AppBundle\Form\Type\ServiceType;
+use Doctrine\ORM\EntityManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
- * @Route("/services")
+ * @Route("/services", service="app.service_controller")
  */
-class ServiceController extends Controller
+class ServiceController
 {
+    /**
+     * @var EntityManager
+     */
+    private $em;
+
+    /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    /**
+     * @var PaginatorInterface
+     */
+    private $paginator;
+
+    /**
+     * @param EntityManager $em
+     * @param FormFactoryInterface $formFactory
+     * @param RouterInterface $router
+     * @param PaginatorInterface $paginator
+     */
+    public function __construct(EntityManager $em, FormFactoryInterface $formFactory, RouterInterface $router, PaginatorInterface $paginator)
+    {
+        $this->em = $em;
+        $this->formFactory = $formFactory;
+        $this->router = $router;
+        $this->paginator = $paginator;
+    }
+
     /**
      * @Route(name="service.list")
      * @Template
      *
      * @param Request $request
-     * @return array
+     * @return RedirectResponse|Response
      */
     public function listAction(Request $request)
     {
-        $services = $this->getDoctrine()
+        $services = $this->em
             ->getRepository('AppBundle:Service')
             ->findAll();
 
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
+        $pagination = $this->paginator->paginate(
             $services,
             $request->query->getInt('page', 1),
             10
@@ -52,17 +87,15 @@ class ServiceController extends Controller
     public function addAction(Request $request)
     {
         $service = new Service();
-        $form = $this->createForm(new ServiceType(), $service);
+        $form = $this->formFactory->create(new ServiceType(), $service);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $this->em->persist($service);
+            $this->em->flush();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($service);
-            $em->flush();
-
-            return $this->redirectToRoute('service.list');
+            return new RedirectResponse($this->router->generate('service.list'));
         }
 
         return [
@@ -78,19 +111,17 @@ class ServiceController extends Controller
      * @param Service $service
      * @return RedirectResponse|Response
      */
-    public function editAction(Request $request, Service $service) {
-
-        $form = $this->createForm(new ServiceType(), $service);
+    public function editAction(Request $request, Service $service)
+    {
+        $form = $this->formFactory->create(new ServiceType(), $service);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $this->em->persist($service);
+            $this->em->flush();
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($service);
-            $em->flush();
-
-            return $this->redirectToRoute('service.list');
+            return new RedirectResponse($this->router->generate('service.list'));
         }
 
         return [
@@ -106,12 +137,9 @@ class ServiceController extends Controller
      */
     public function deleteAction(Service $service)
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->em->remove($service);
+        $this->em->flush();
 
-        $em->remove($service);
-        $em->flush();
-
-        return $this->redirectToRoute('service.list');
-
+        return new RedirectResponse($this->router->generate('service.list'));
     }
 }

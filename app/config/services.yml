@@ -22,3 +22,10 @@ services:
             - @form.factory
             - @router
             - @security.authentication_utils
+    app.service_controller:
+        class: AppBundle\Controller\ServiceController
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @form.factory
+            - @router
+            - @knp_paginator

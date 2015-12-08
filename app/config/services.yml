@@ -16,3 +16,9 @@ services:
             - @form.factory
             - @session
             - @router
+    app.security_controller:
+        class: AppBundle\Controller\SecurityController
+        arguments:
+            - @form.factory
+            - @router
+            - @security.authentication_utils

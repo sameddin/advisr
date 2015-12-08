@@ -3,22 +3,53 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class SecurityController extends Controller
+/**
+ * @Route("/login", service="app.security_controller")
+ */
+class SecurityController
 {
     /**
-     * @Route("/login", name="security.login")
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    /**
+     * @var AuthenticationUtils
+     */
+    private $authenticationUtils;
+
+    /**
+     * @param FormFactoryInterface $formFactory
+     * @param RouterInterface $router
+     * @param AuthenticationUtils $authenticationUtils
+     */
+    public function __construct(FormFactoryInterface $formFactory, RouterInterface $router, AuthenticationUtils $authenticationUtils)
+    {
+        $this->formFactory = $formFactory;
+        $this->router = $router;
+        $this->authenticationUtils = $authenticationUtils;
+    }
+
+    /**
+     * @Route(name="security.login")
      * @Template
      */
     public function loginAction()
     {
-        $form = $this->get('form.factory')->createNamedBuilder(null, 'login')
-            ->setAction($this->generateUrl('security.login'))
+        $form = $this->formFactory->createNamedBuilder(null, 'login')
+            ->setAction($this->router->generate('security.login'))
             ->getForm();
 
-        $authenticationUtils = $this->get('security.authentication_utils');
-        $error = $authenticationUtils->getLastAuthenticationError();
+        $error = $this->authenticationUtils->getLastAuthenticationError();
 
         return [
             'form'  => $form->createView(),

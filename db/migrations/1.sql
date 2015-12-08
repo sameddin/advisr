@@ -9,6 +9,9 @@ CREATE TABLE "user"
 
     PRIMARY KEY (id)
 );
+
+CREATE UNIQUE INDEX ON "user" (lower(email));
+
 CREATE TABLE category
 (
     id   bigserial NOT NULL,
@@ -16,6 +19,7 @@ CREATE TABLE category
 
     PRIMARY KEY (id)
 );
+
 CREATE TABLE service
 (
     id          bigserial NOT NULL,

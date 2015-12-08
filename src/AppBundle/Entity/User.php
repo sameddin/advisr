@@ -14,9 +14,9 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @Table(name="`user`")
- * @UniqueEntity("email")
+ * @UniqueEntity("email", repositoryMethod="findOneByEmail")
  */
 class User implements UserInterface
 {

@@ -9,7 +9,7 @@
 
     <h1>{{ 'user.list'|trans }}</h1>
 
-    {% for user in users %}
+    {% for user in pagination %}
         <ul class="list-unstyled">
             <li>
                 <a href="{{ path('user.view', {id: user.id}) }}">
@@ -19,6 +19,10 @@
             </li>
         </ul>
     {% endfor %}
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 
 {% endblock %}
 

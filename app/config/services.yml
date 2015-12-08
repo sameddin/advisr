@@ -6,7 +6,9 @@ parameters:
 services:
     app.user_controller:
         class: AppBundle\Controller\UserController
-        arguments: [ @doctrine.orm.entity_manager ]
+        arguments:
+            - @doctrine.orm.entity_manager
+            - @knp_paginator
     app.home_controller:
         class: AppBundle\Controller\HomeController
     app.registration_controller:

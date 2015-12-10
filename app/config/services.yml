@@ -4,34 +4,40 @@ parameters:
 #    parameter_name: value
 
 services:
+    app.abstract_controller:
+        class: AppBundle\Controller\AbstractController
+        abstract: true
+        calls:
+            - [setFormFactory, [@form.factory]]
+
     app.user_controller:
         class: AppBundle\Controller\UserController
         arguments:
             - @doctrine.orm.entity_manager
             - @knp_paginator
-            - @form.factory
             - @router
+        parent: app.abstract_controller
     app.home_controller:
         class: AppBundle\Controller\HomeController
     app.registration_controller:
         class: AppBundle\Controller\RegistrationController
         arguments:
             - @doctrine.orm.entity_manager
-            - @form.factory
             - @session
             - @router
             - @security.token_storage
+        parent: app.abstract_controller
     app.security_controller:
         class: AppBundle\Controller\SecurityController
         arguments:
-            - @form.factory
             - @router
             - @security.authentication_utils
+        parent: app.abstract_controller
     app.service_controller:
         class: AppBundle\Controller\ServiceController
         arguments:
             - @doctrine.orm.entity_manager
-            - @form.factory
             - @router
             - @knp_paginator
             - @security.token_storage
+        parent: app.abstract_controller

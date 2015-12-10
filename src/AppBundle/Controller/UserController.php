@@ -7,7 +7,6 @@ use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +15,7 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * @Route("/users", service="app.user_controller")
  */
-class UserController
+class UserController extends AbstractController
 {
     /**
      * @var EntityManager
@@ -29,11 +28,6 @@ class UserController
     private $paginator;
 
     /**
-     * @var FormFactoryInterface
-     */
-    private $formFactory;
-
-    /**
      * @var RouterInterface
      */
     private $router;
@@ -41,14 +35,12 @@ class UserController
     /**
      * @param EntityManager $em
      * @param PaginatorInterface $paginator
-     * @param FormFactoryInterface $formFactory
      * @param RouterInterface $router
      */
-    public function __construct(EntityManager $em, PaginatorInterface $paginator, FormFactoryInterface $formFactory, RouterInterface $router)
+    public function __construct(EntityManager $em, PaginatorInterface $paginator, RouterInterface $router)
     {
         $this->em = $em;
         $this->paginator = $paginator;
-        $this->formFactory = $formFactory;
         $this->router = $router;
     }
 

@@ -6,7 +6,6 @@ use AppBundle\Form\Type\UserType;
 use Doctrine\ORM\EntityManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,17 +17,12 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 /**
  * @Route("/register", service="app.registration_controller")
  */
-class RegistrationController
+class RegistrationController extends AbstractController
 {
     /**
      * @var EntityManager
      */
     private $em;
-
-    /**
-     * @var FormFactoryInterface
-     */
-    private $formFactory;
 
     /**
      * @var Session
@@ -47,15 +41,13 @@ class RegistrationController
 
     /**
      * @param EntityManager $em
-     * @param FormFactoryInterface $formFactory
      * @param Session $session
      * @param RouterInterface $router
      * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(EntityManager $em, FormFactoryInterface $formFactory, Session $session, RouterInterface $router, TokenStorageInterface $tokenStorage)
+    public function __construct(EntityManager $em, Session $session, RouterInterface $router, TokenStorageInterface $tokenStorage)
     {
         $this->em = $em;
-        $this->formFactory = $formFactory;
         $this->session = $session;
         $this->router = $router;
         $this->tokenStorage = $tokenStorage;

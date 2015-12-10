@@ -3,20 +3,14 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
  * @Route("/login", service="app.security_controller")
  */
-class SecurityController
+class SecurityController extends AbstractController
 {
-    /**
-     * @var FormFactoryInterface
-     */
-    private $formFactory;
-
     /**
      * @var RouterInterface
      */
@@ -28,13 +22,11 @@ class SecurityController
     private $authenticationUtils;
 
     /**
-     * @param FormFactoryInterface $formFactory
      * @param RouterInterface $router
      * @param AuthenticationUtils $authenticationUtils
      */
-    public function __construct(FormFactoryInterface $formFactory, RouterInterface $router, AuthenticationUtils $authenticationUtils)
+    public function __construct(RouterInterface $router, AuthenticationUtils $authenticationUtils)
     {
-        $this->formFactory = $formFactory;
         $this->router = $router;
         $this->authenticationUtils = $authenticationUtils;
     }

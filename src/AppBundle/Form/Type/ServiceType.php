@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Form\Type;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,7 +24,15 @@ class ServiceType extends AbstractType
                 ],
                 'label' => 'service.description',
             ])
-            ->add('save', SubmitType::class, ['label' => 'common.add']);
+            ->add('category', EntityType::class, [
+                    'class' => 'AppBundle:Category',
+                    'choice_label' => 'name',
+                    'placeholder' => 'service.category.placeholder',
+                    'label' => 'service.category',
+            ])
+            ->add('save', SubmitType::class, [
+                    'label' => 'common.add'
+            ]);
     }
 
     public function getName()

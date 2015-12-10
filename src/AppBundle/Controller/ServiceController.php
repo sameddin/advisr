@@ -2,6 +2,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Service;
+use AppBundle\Entity\User;
 use AppBundle\Form\Type\ServiceType;
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
@@ -12,6 +13,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * @Route("/services", service="app.service_controller")
@@ -39,17 +41,24 @@ class ServiceController
     private $paginator;
 
     /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
+
+    /**
      * @param EntityManager $em
      * @param FormFactoryInterface $formFactory
      * @param RouterInterface $router
      * @param PaginatorInterface $paginator
+     * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(EntityManager $em, FormFactoryInterface $formFactory, RouterInterface $router, PaginatorInterface $paginator)
+    public function __construct(EntityManager $em, FormFactoryInterface $formFactory, RouterInterface $router, PaginatorInterface $paginator, TokenStorageInterface $tokenStorage)
     {
         $this->em = $em;
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->paginator = $paginator;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -86,7 +95,9 @@ class ServiceController
      */
     public function addAction(Request $request)
     {
+        $user = $this->getUser();
         $service = new Service();
+        $service->setUser($user);
         $form = $this->formFactory->create(new ServiceType(), $service);
 
         $form->handleRequest($request);
@@ -95,7 +106,9 @@ class ServiceController
             $this->em->persist($service);
             $this->em->flush();
 
-            return new RedirectResponse($this->router->generate('service.list'));
+            return new RedirectResponse($this->router->generate('user.view', [
+                'id' => $user->getId(),
+            ]));
         }
 
         return [
@@ -141,5 +154,13 @@ class ServiceController
         $this->em->flush();
 
         return new RedirectResponse($this->router->generate('service.list'));
+    }
+
+    /**
+     * @return User
+     */
+    private function getUser()
+    {
+        return $this->tokenStorage->getToken()->getUser();
     }
 }

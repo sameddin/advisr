@@ -16,9 +16,9 @@
             </div>
         </div>
 
-        <a href="{{ path('user.edit', {id: user.id }) }}" class="btn btn-success" role="button">{{ 'common.edit'|trans }}</a>
+        <p><a href="{{ path('user.edit', {id: user.id }) }}" class="btn btn-success" role="button">{{ 'common.edit'|trans }}</a></p>
+        <p><a href="{{ path('service.add') }}" class="btn btn-default" role="button">{{ 'service.add'|trans }}</a></p>
 
-        <h2>{{ 'service.list'|trans }}</h2>
         {% for service in user.services %}
             <div class="panel panel-default">
                 <div class="panel-heading">{{ service.title }}</div>

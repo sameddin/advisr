@@ -34,3 +34,4 @@ services:
             - @form.factory
             - @router
             - @knp_paginator
+            - @security.token_storage

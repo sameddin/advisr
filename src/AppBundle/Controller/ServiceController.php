@@ -154,7 +154,9 @@ class ServiceController
         $this->em->remove($service);
         $this->em->flush();
 
-        return new RedirectResponse($this->router->generate('service.list'));
+        return new RedirectResponse($this->router->generate('user.view', [
+            'id' => $service->getUser()->getId(),
+        ]));
     }
 
     /**

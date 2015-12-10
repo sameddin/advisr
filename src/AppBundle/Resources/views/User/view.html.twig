@@ -26,6 +26,7 @@
                 <div class="panel-body">{{ service.description }}</div>
                 <div class="panel-footer">
                     <a href="{{ path('service.edit', {id: service.id }) }}" class="btn btn-success" role="button">{{ 'common.edit'|trans }}</a>
+                    <a href="{{ path('service.delete', {id: service.id }) }}" class="btn btn-danger" role="button">{{ 'common.delete'|trans }}</a>
                 </div>
             </div>
         {% endfor %}

@@ -7,7 +7,7 @@ AppBundle\Entity\User:
     user2:
         firstName: Самеддин
         lastName: Пасизаде
-        email: conzole@mail.ru
+        email: sameddin.pasizade@gmail.com
         password: $2y$04$VUZidibV7TjXDftDAr3sguDhV.YgBnnx79eJKeNyd/9hohrihhs2C
     user{3..100}:
         firstName: <firstNameMale()>

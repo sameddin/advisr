@@ -2,7 +2,7 @@
 
 {% block content %}
 <div>
-    <h1 class="page">{{ user.firstName }} {{ user.lastName }}</h1>
+    <h1 class="page">{{ user.fullName }}</h1>
     <div class="row">
         <div class="col-xs-4">
             <img class="img-responsive" src="{{ gravatar(user.email, 360) }}"/>

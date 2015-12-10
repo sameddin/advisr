@@ -14,7 +14,7 @@
             <li>
                 <a href="{{ path('user.view', {id: user.id}) }}">
                     <img class="img-responsive" src="{{ gravatar(user.email, 100) }}"/>
-                    <span>{{ user.firstName }} {{ user.lastName }}</span>
+                    <span>{{ user.fullName }}</span>
                 </a>
             </li>
         </ul>

@@ -3,7 +3,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\LoggedUserType;
-use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -18,11 +17,6 @@ use Symfony\Component\Routing\RouterInterface;
 class UserController extends AbstractController
 {
     /**
-     * @var EntityManager
-     */
-    private $em;
-
-    /**
      * @var PaginatorInterface
      */
     private $paginator;
@@ -33,13 +27,11 @@ class UserController extends AbstractController
     private $router;
 
     /**
-     * @param EntityManager $em
      * @param PaginatorInterface $paginator
      * @param RouterInterface $router
      */
-    public function __construct(EntityManager $em, PaginatorInterface $paginator, RouterInterface $router)
+    public function __construct(PaginatorInterface $paginator, RouterInterface $router)
     {
-        $this->em = $em;
         $this->paginator = $paginator;
         $this->router = $router;
     }

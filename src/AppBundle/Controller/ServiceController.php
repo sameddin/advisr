@@ -10,7 +10,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
@@ -18,11 +17,6 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class ServiceController extends AbstractController
 {
-    /**
-     * @var RouterInterface
-     */
-    private $router;
-
     /**
      * @var PaginatorInterface
      */
@@ -34,13 +28,11 @@ class ServiceController extends AbstractController
     private $tokenStorage;
 
     /**
-     * @param RouterInterface $router
      * @param PaginatorInterface $paginator
      * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(RouterInterface $router, PaginatorInterface $paginator, TokenStorageInterface $tokenStorage)
+    public function __construct(PaginatorInterface $paginator, TokenStorageInterface $tokenStorage)
     {
-        $this->router = $router;
         $this->paginator = $paginator;
         $this->tokenStorage = $tokenStorage;
     }

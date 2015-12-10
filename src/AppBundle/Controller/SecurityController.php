@@ -3,7 +3,6 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -12,22 +11,15 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SecurityController extends AbstractController
 {
     /**
-     * @var RouterInterface
-     */
-    private $router;
-
-    /**
      * @var AuthenticationUtils
      */
     private $authenticationUtils;
 
     /**
-     * @param RouterInterface $router
      * @param AuthenticationUtils $authenticationUtils
      */
-    public function __construct(RouterInterface $router, AuthenticationUtils $authenticationUtils)
+    public function __construct(AuthenticationUtils $authenticationUtils)
     {
-        $this->router = $router;
         $this->authenticationUtils = $authenticationUtils;
     }
 

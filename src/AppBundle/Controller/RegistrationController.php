@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
@@ -24,24 +23,17 @@ class RegistrationController extends AbstractController
     private $session;
 
     /**
-     * @var RouterInterface
-     */
-    private $router;
-
-    /**
      * @var TokenStorageInterface
      */
     private $tokenStorage;
 
     /**
      * @param Session $session
-     * @param RouterInterface $router
      * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(Session $session, RouterInterface $router, TokenStorageInterface $tokenStorage)
+    public function __construct(Session $session, TokenStorageInterface $tokenStorage)
     {
         $this->session = $session;
-        $this->router = $router;
         $this->tokenStorage = $tokenStorage;
     }
 

@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\RouterInterface;
 
 /**
  * @Route("/users", service="app.user_controller")
@@ -22,18 +21,11 @@ class UserController extends AbstractController
     private $paginator;
 
     /**
-     * @var RouterInterface
-     */
-    private $router;
-
-    /**
      * @param PaginatorInterface $paginator
-     * @param RouterInterface $router
      */
-    public function __construct(PaginatorInterface $paginator, RouterInterface $router)
+    public function __construct(PaginatorInterface $paginator)
     {
         $this->paginator = $paginator;
-        $this->router = $router;
     }
 
     /**

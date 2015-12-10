@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
  * @Route("/register", service="app.registration_controller")
@@ -39,17 +41,24 @@ class RegistrationController
     private $router;
 
     /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorage;
+
+    /**
      * @param EntityManager $em
      * @param FormFactoryInterface $formFactory
      * @param Session $session
      * @param RouterInterface $router
+     * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(EntityManager $em, FormFactoryInterface $formFactory, Session $session, RouterInterface $router)
+    public function __construct(EntityManager $em, FormFactoryInterface $formFactory, Session $session, RouterInterface $router, TokenStorageInterface $tokenStorage)
     {
         $this->em = $em;
         $this->formFactory = $formFactory;
         $this->session = $session;
         $this->router = $router;
+        $this->tokenStorage = $tokenStorage;
     }
 
     /**
@@ -69,6 +78,8 @@ class RegistrationController
             $this->em->persist($user);
             $this->em->flush();
 
+            $this->login($user);
+
             $this->session->getFlashBag()->add('success', 'registration.success');
 
             return new RedirectResponse($this->router->generate('homepage'));
@@ -77,5 +88,11 @@ class RegistrationController
         return [
             'form' => $form->createView(),
         ];
+    }
+
+    private function login(User $user)
+    {
+        $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+        $this->tokenStorage->setToken($token);
     }
 }

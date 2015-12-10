@@ -18,6 +18,7 @@ services:
             - @form.factory
             - @session
             - @router
+            - @security.token_storage
     app.security_controller:
         class: AppBundle\Controller\SecurityController
         arguments:

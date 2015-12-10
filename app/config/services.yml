@@ -13,6 +13,7 @@ services:
             - [setRouter, [@router]]
             - [setPaginator, [@knp_paginator]]
             - [setTokenStorage, [@security.token_storage]]
+            - [setSession, [@session]]
     app.user_controller:
         class: AppBundle\Controller\UserController
         parent: app.abstract_controller
@@ -20,8 +21,6 @@ services:
         class: AppBundle\Controller\HomeController
     app.registration_controller:
         class: AppBundle\Controller\RegistrationController
-        arguments:
-            - @session
         parent: app.abstract_controller
     app.security_controller:
         class: AppBundle\Controller\SecurityController

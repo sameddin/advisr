@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
@@ -33,6 +34,11 @@ abstract class AbstractController
      * @var TokenStorageInterface
      */
     protected $tokenStorage;
+
+    /**
+     * @var Session
+     */
+    protected $session;
 
     /**
      * @param FormFactoryInterface $formFactory
@@ -72,5 +78,13 @@ abstract class AbstractController
     public function setTokenStorage(TokenStorageInterface $tokenStorage)
     {
         $this->tokenStorage = $tokenStorage;
+    }
+
+    /**
+     * @param Session $session
+     */
+    public function setSession(Session $session)
+    {
+        $this->session = $session;
     }
 }

@@ -131,10 +131,11 @@ class ServiceController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->em->persist($service);
             $this->em->flush();
 
-            return new RedirectResponse($this->router->generate('service.list'));
+            return new RedirectResponse($this->router->generate('user.view', [
+                'id' => $service->getUser()->getId(),
+            ]));
         }
 
         return [

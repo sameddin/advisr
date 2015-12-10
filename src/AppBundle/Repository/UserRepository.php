@@ -8,9 +8,9 @@ class UserRepository extends EntityRepository
 {
     /**
      * @param array $array
-     * @return User
+     * @return User[]
      */
-    public function findOneByEmail(array $array)
+    public function findByEmail(array $array)
     {
         $email = $array['email'];
 
@@ -19,6 +19,6 @@ class UserRepository extends EntityRepository
             ->where('LOWER(u.email) = LOWER(:email)')
             ->setParameter('email', $email)
             ->getQuery()
-            ->getOneOrNullResult();
+            ->getResult();
     }
 }

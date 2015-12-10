@@ -9,6 +9,8 @@ services:
         arguments:
             - @doctrine.orm.entity_manager
             - @knp_paginator
+            - @form.factory
+            - @router
     app.home_controller:
         class: AppBundle\Controller\HomeController
     app.registration_controller:

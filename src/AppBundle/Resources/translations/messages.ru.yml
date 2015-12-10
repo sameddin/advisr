@@ -9,6 +9,7 @@ registration: Регистрация
 user.email: Email
 user.first_name: Имя
 user.last_name: Фамилия
+user.about: О себе
 security.login: Войти
 security.logout: Выйти
 registration.success: Ваша регистрация прошла успешно!

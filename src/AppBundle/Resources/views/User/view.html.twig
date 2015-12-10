@@ -1,24 +1,30 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<div>
-    <h1 class="page">{{ user.fullName }}</h1>
-    <div class="row">
-        <div class="col-xs-4">
-            <img class="img-responsive" src="{{ gravatar(user.email, 360) }}"/>
+    <div>
+        <div class="row">
+            <div class="col-sm-9">
+                    <h1 class="page">{{ user.fullName }}</h1>
+                <div class="row">
+                    <div class="col-xs-8 col-sm-6">
+                        <img class="img-responsive" src="{{ gravatar(user.email, 360) }}"/>
+                    </div>
+                    <div class="col-xs-8 col-sm-6">
+                        <div>{{ user.about }}</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-xs-8">
-            <div>{{ user.about }}</div>
-        </div>
-    </div>
 
-    <h2>{{ 'service.list'|trans }}</h2>
-    {% for service in user.services %}
-    <div class="panel panel-default">
-        <div class="panel-heading">{{ service.title }}</div>
-        <div class="panel-body">{{ service.description }}</div>
+        <a href="{{ path('user.edit', {id: user.id }) }}" class="btn btn-success" role="button">{{ 'common.edit'|trans }}</a>
+
+        <h2>{{ 'service.list'|trans }}</h2>
+        {% for service in user.services %}
+            <div class="panel panel-default">
+                <div class="panel-heading">{{ service.title }}</div>
+                <div class="panel-body">{{ service.description }}</div>
+            </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
 {% endblock %}

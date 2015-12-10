@@ -2,13 +2,16 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Form\Type\LoggedUserType;
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouterInterface;
 
 /**
  * @Route("/users", service="app.user_controller")
@@ -26,13 +29,27 @@ class UserController
     private $paginator;
 
     /**
+     * @var FormFactoryInterface
+     */
+    private $formFactory;
+
+    /**
+     * @var RouterInterface
+     */
+    private $router;
+
+    /**
      * @param EntityManager $em
      * @param PaginatorInterface $paginator
+     * @param FormFactoryInterface $formFactory
+     * @param RouterInterface $router
      */
-    public function __construct(EntityManager $em, PaginatorInterface $paginator)
+    public function __construct(EntityManager $em, PaginatorInterface $paginator, FormFactoryInterface $formFactory, RouterInterface $router)
     {
         $this->em = $em;
         $this->paginator = $paginator;
+        $this->formFactory = $formFactory;
+        $this->router = $router;
     }
 
     /**
@@ -70,6 +87,33 @@ class UserController
     public function viewAction(User $user)
     {
         return [
+            'user' => $user,
+        ];
+    }
+
+    /**
+     * @Route("/edit/{id}", name="user.edit")
+     * @Template
+     *
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse|Response
+     */
+    public function editAction(Request $request, User $user)
+    {
+        $form = $this->formFactory->create(LoggedUserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $this->em->flush();
+
+            return new RedirectResponse($this->router->generate('user.view', [
+                'id' => $user->getId(),
+            ]));
+        }
+
+        return [
+            'form' => $form->createView(),
             'user' => $user,
         ];
     }

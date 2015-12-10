@@ -3,7 +3,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\LoggedUserType;
-use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,19 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class UserController extends AbstractController
 {
-    /**
-     * @var PaginatorInterface
-     */
-    private $paginator;
-
-    /**
-     * @param PaginatorInterface $paginator
-     */
-    public function __construct(PaginatorInterface $paginator)
-    {
-        $this->paginator = $paginator;
-    }
-
     /**
      * @Route(name="user.list")
      * @Template

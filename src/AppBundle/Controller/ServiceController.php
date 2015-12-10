@@ -4,7 +4,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Service;
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\ServiceType;
-use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,22 +17,15 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class ServiceController extends AbstractController
 {
     /**
-     * @var PaginatorInterface
-     */
-    private $paginator;
-
-    /**
      * @var TokenStorageInterface
      */
     private $tokenStorage;
 
     /**
-     * @param PaginatorInterface $paginator
      * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(PaginatorInterface $paginator, TokenStorageInterface $tokenStorage)
+    public function __construct(TokenStorageInterface $tokenStorage)
     {
-        $this->paginator = $paginator;
         $this->tokenStorage = $tokenStorage;
     }
 

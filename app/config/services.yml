@@ -11,10 +11,9 @@ services:
             - [setFormFactory, [@form.factory]]
             - [setEm, [@doctrine.orm.entity_manager]]
             - [setRouter, [@router]]
+            - [setPaginator, [@knp_paginator]]
     app.user_controller:
         class: AppBundle\Controller\UserController
-        arguments:
-            - @knp_paginator
         parent: app.abstract_controller
     app.home_controller:
         class: AppBundle\Controller\HomeController
@@ -32,6 +31,5 @@ services:
     app.service_controller:
         class: AppBundle\Controller\ServiceController
         arguments:
-            - @knp_paginator
             - @security.token_storage
         parent: app.abstract_controller

@@ -2,6 +2,7 @@
 namespace AppBundle\Controller;
 
 use Doctrine\ORM\EntityManager;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\RouterInterface;
 
@@ -21,6 +22,11 @@ abstract class AbstractController
      * @var RouterInterface
      */
     protected $router;
+
+    /**
+     * @var PaginatorInterface
+     */
+    protected $paginator;
 
     /**
      * @param FormFactoryInterface $formFactory
@@ -44,5 +50,13 @@ abstract class AbstractController
     public function setRouter(RouterInterface $router)
     {
         $this->router = $router;
+    }
+
+    /**
+     * @param PaginatorInterface $paginator
+     */
+    public function setPaginator(PaginatorInterface $paginator)
+    {
+        $this->paginator = $paginator;
     }
 }

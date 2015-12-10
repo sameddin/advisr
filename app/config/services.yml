@@ -12,6 +12,7 @@ services:
             - [setEm, [@doctrine.orm.entity_manager]]
             - [setRouter, [@router]]
             - [setPaginator, [@knp_paginator]]
+            - [setTokenStorage, [@security.token_storage]]
     app.user_controller:
         class: AppBundle\Controller\UserController
         parent: app.abstract_controller
@@ -21,7 +22,6 @@ services:
         class: AppBundle\Controller\RegistrationController
         arguments:
             - @session
-            - @security.token_storage
         parent: app.abstract_controller
     app.security_controller:
         class: AppBundle\Controller\SecurityController
@@ -30,6 +30,4 @@ services:
         parent: app.abstract_controller
     app.service_controller:
         class: AppBundle\Controller\ServiceController
-        arguments:
-            - @security.token_storage
         parent: app.abstract_controller

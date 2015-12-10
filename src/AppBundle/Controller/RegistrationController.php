@@ -23,18 +23,12 @@ class RegistrationController extends AbstractController
     private $session;
 
     /**
-     * @var TokenStorageInterface
-     */
-    private $tokenStorage;
-
-    /**
      * @param Session $session
      * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(Session $session, TokenStorageInterface $tokenStorage)
+    public function __construct(Session $session)
     {
         $this->session = $session;
-        $this->tokenStorage = $tokenStorage;
     }
 
     /**

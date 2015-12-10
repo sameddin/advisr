@@ -5,6 +5,7 @@ use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 abstract class AbstractController
 {
@@ -27,6 +28,11 @@ abstract class AbstractController
      * @var PaginatorInterface
      */
     protected $paginator;
+
+    /**
+     * @var TokenStorageInterface
+     */
+    protected $tokenStorage;
 
     /**
      * @param FormFactoryInterface $formFactory
@@ -58,5 +64,13 @@ abstract class AbstractController
     public function setPaginator(PaginatorInterface $paginator)
     {
         $this->paginator = $paginator;
+    }
+
+    /**
+     * @param TokenStorageInterface $tokenStorage
+     */
+    public function setTokenStorage(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
     }
 }

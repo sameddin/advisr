@@ -19,7 +19,7 @@ abstract class AbstractController
     /**
      * @param FormFactoryInterface $formFactory
      */
-    public function setFormFactory($formFactory)
+    public function setFormFactory(FormFactoryInterface $formFactory)
     {
         $this->formFactory = $formFactory;
     }

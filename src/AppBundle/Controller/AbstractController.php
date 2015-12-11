@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 abstract class AbstractController
 {
@@ -39,6 +40,11 @@ abstract class AbstractController
      * @var Session
      */
     protected $session;
+
+    /**
+     * @var AuthenticationUtils
+     */
+    protected $authenticationUtils;
 
     /**
      * @param FormFactoryInterface $formFactory
@@ -86,5 +92,13 @@ abstract class AbstractController
     public function setSession(Session $session)
     {
         $this->session = $session;
+    }
+
+    /**
+     * @param AuthenticationUtils $authenticationUtils
+     */
+    public function setAuthenticationUtils(AuthenticationUtils $authenticationUtils)
+    {
+        $this->authenticationUtils = $authenticationUtils;
     }
 }

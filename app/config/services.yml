@@ -14,6 +14,7 @@ services:
             - [setPaginator, [@knp_paginator]]
             - [setTokenStorage, [@security.token_storage]]
             - [setSession, [@session]]
+            - [setAuthenticationUtils, [@security.authentication_utils]]
     app.user_controller:
         class: AppBundle\Controller\UserController
         parent: app.abstract_controller
@@ -24,8 +25,6 @@ services:
         parent: app.abstract_controller
     app.security_controller:
         class: AppBundle\Controller\SecurityController
-        arguments:
-            - @security.authentication_utils
         parent: app.abstract_controller
     app.service_controller:
         class: AppBundle\Controller\ServiceController

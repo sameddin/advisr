@@ -23,9 +23,17 @@ services:
     app.registration_controller:
         class: AppBundle\Controller\RegistrationController
         parent: app.abstract_controller
+        arguments:
+            - @app.user_repository
     app.security_controller:
         class: AppBundle\Controller\SecurityController
         parent: app.abstract_controller
     app.service_controller:
         class: AppBundle\Controller\ServiceController
         parent: app.abstract_controller
+
+    app.user_repository:
+        class: AppBundle\Repository\UserRepository
+        factory: [@doctrine.orm.entity_manager, getRepository]
+        arguments:
+            - AppBundle:User

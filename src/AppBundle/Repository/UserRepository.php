@@ -21,4 +21,13 @@ class UserRepository extends EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * @param User $user
+     */
+    public function save(User $user)
+    {
+        $this->getEntityManager()->persist($user);
+        $this->getEntityManager()->flush();
+    }
 }

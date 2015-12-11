@@ -3,6 +3,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\UserType;
+use AppBundle\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,6 +16,19 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
  */
 class RegistrationController extends AbstractController
 {
+    /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
     /**
      * @Route(name="registration")
      * @Template
@@ -29,8 +43,7 @@ class RegistrationController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            $this->em->persist($user);
-            $this->em->flush();
+            $this->userRepository->save($user);
 
             $this->login($user);
 

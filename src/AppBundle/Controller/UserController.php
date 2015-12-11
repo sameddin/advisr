@@ -3,6 +3,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\LoggedUserType;
+use AppBundle\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -15,6 +16,19 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends AbstractController
 {
     /**
+     * @var UserRepository
+     */
+    private $userRepository;
+
+    /**
+     * @param UserRepository $userRepository
+     */
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+    /**
      * @Route(name="user.list")
      * @Template
      *
@@ -23,9 +37,7 @@ class UserController extends AbstractController
      */
     public function listAction(Request $request)
     {
-        $users = $this->em
-            ->getRepository('AppBundle:User')
-            ->findAll();
+        $users = $this->userRepository->findAll();
 
         $pagination = $this->paginator->paginate(
             $users,
@@ -67,7 +79,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->em->flush();
+            $this->userRepository->save($user);
 
             return new RedirectResponse($this->router->generate('user.view', [
                 'id' => $user->getId(),

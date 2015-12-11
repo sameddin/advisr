@@ -18,6 +18,8 @@ services:
     app.user_controller:
         class: AppBundle\Controller\UserController
         parent: app.abstract_controller
+        arguments:
+            - @app.user_repository
     app.home_controller:
         class: AppBundle\Controller\HomeController
     app.registration_controller:

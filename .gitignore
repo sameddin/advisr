@@ -1,6 +1,5 @@
 /app/config/parameters.yml
 /bin/
-/build/
 /composer.phar
 /vendor/
 /web/bundles/
@@ -9,6 +8,7 @@
 !app/cache/.gitkeep
 /app/logs/*
 !app/logs/.gitkeep
-/app/phpunit.xml
 /bower_components
-npm-debug.log
+web/css/
+web/js/
+web/assetic/

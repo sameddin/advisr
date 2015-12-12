@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Service;
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\ServiceType;
+use AppBundle\Repository\ServiceRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -16,6 +17,19 @@ use Symfony\Component\HttpFoundation\Response;
 class ServiceController extends AbstractController
 {
     /**
+     * @var ServiceRepository
+     */
+    private $serviceRepository;
+
+    /**
+     * @param ServiceRepository $serviceRepository
+     */
+    public function __construct(ServiceRepository $serviceRepository)
+    {
+        $this->serviceRepository = $serviceRepository;
+    }
+
+    /**
      * @Route(name="service.list")
      * @Template
      *
@@ -24,9 +38,7 @@ class ServiceController extends AbstractController
      */
     public function listAction(Request $request)
     {
-        $services = $this->em
-            ->getRepository('AppBundle:Service')
-            ->findAll();
+        $services = $this->serviceRepository->findAll();
 
         $pagination = $this->paginator->paginate(
             $services,
@@ -57,8 +69,7 @@ class ServiceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->em->persist($service);
-            $this->em->flush();
+            $this->serviceRepository->save($service);
 
             return new RedirectResponse($this->router->generate('user.view', [
                 'id' => $user->getId(),
@@ -85,7 +96,7 @@ class ServiceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->em->flush();
+            $this->serviceRepository->save($service);
 
             return new RedirectResponse($this->router->generate('user.view', [
                 'id' => $service->getUser()->getId(),
@@ -105,8 +116,7 @@ class ServiceController extends AbstractController
      */
     public function deleteAction(Service $service)
     {
-        $this->em->remove($service);
-        $this->em->flush();
+        $this->serviceRepository->remove($service);
 
         return new RedirectResponse($this->router->generate('user.view', [
             'id' => $service->getUser()->getId(),

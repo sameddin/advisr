@@ -33,9 +33,16 @@ services:
     app.service_controller:
         class: AppBundle\Controller\ServiceController
         parent: app.abstract_controller
+        arguments:
+            - @app.service_repository
 
     app.user_repository:
         class: AppBundle\Repository\UserRepository
         factory: [@doctrine.orm.entity_manager, getRepository]
         arguments:
             - AppBundle:User
+    app.service_repository:
+        class: AppBundle\Repository\ServiceRepository
+        factory: [@doctrine.orm.entity_manager, getRepository]
+        arguments:
+            - AppBundle:Service

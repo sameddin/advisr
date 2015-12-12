@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\ManyToOne;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="AppBundle\Repository\ServiceRepository")
  */
 class Service
 {

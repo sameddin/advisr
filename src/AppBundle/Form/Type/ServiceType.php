@@ -31,7 +31,7 @@ class ServiceType extends AbstractType
                     'label' => 'service.category',
             ])
             ->add('save', SubmitType::class, [
-                    'label' => 'common.add'
+                    'label' => 'common.save'
             ]);
     }
 

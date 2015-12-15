@@ -25,7 +25,7 @@ class LoggedUserType extends AbstractType
                 'label' => 'user.about'
             ])
             ->add('save', SubmitType::class, [
-                'label' => 'common.add',
+                'label' => 'common.save',
             ]);
     }
 

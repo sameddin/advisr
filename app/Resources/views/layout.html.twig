@@ -11,7 +11,6 @@
     {% javascripts '@js' %}
     <script src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
 {% endblock %}
 
 {% block body %}
@@ -32,7 +31,9 @@
                     <ul class="nav navbar-nav">
                         <li><a href="{{ path('user.list') }}">{{ 'user.list'|trans }}</a></li>
                         <li><a href="{{ path('service.list') }}">{{ 'service.list'|trans }}</a></li>
-                        <li><a href="{{ path('registration') }}">{{ 'registration'|trans }}</a></li>
+                        {% if not is_granted(expression('is_authenticated()')) %}
+                            <li><a href="{{ path('registration') }}">{{ 'registration'|trans }}</a></li>
+                        {% endif %}
                     </ul>
 
                 {% if is_granted(expression('is_authenticated()')) %}

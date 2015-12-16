@@ -7,6 +7,26 @@ use Doctrine\ORM\EntityRepository;
 class ServiceRepository extends EntityRepository
 {
     /**
+     * @param array $filter
+     * @return Service[]
+     */
+    public function findAll(array $filter = [])
+    {
+        $qb = $this->createQueryBuilder('s');
+
+        if (isset($filter['category'])) {
+            $qb
+                ->andWhere('s.category = :categoryId')
+                ->setParameter('categoryId', $filter['category'])
+            ;
+        }
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
      * @param Service $service
      */
     public function save(Service $service)

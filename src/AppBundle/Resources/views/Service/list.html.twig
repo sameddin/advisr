@@ -9,6 +9,8 @@
 
     <h2>{{ 'service.list'|trans }}</h2>
 
+    {{ form(filterForm) }}
+
     {% for service in pagination %}
         <div class="panel panel-default">
             <div class="panel-heading">{{ service.title }}</div>

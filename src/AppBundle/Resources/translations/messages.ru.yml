@@ -17,6 +17,7 @@ common.add: Добавить
 common.edit: Изменить
 common.delete: Удалить
 common.save: Сохранить
+common.select: Выбрать
 service.add: Добавить услугу
 service.title: Название услуги
 service.description: Описание услуги

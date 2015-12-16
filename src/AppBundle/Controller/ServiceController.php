@@ -1,12 +1,17 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Category;
 use AppBundle\Entity\Service;
 use AppBundle\Entity\User;
 use AppBundle\Form\Type\ServiceType;
 use AppBundle\Repository\ServiceRepository;
+use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,10 +40,40 @@ class ServiceController extends AbstractController
      *
      * @param Request $request
      * @return RedirectResponse|Response
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Doctrine\ORM\TransactionRequiredException
+     * @internal param Category $category
      */
     public function listAction(Request $request)
     {
-        $services = $this->serviceRepository->findAll();
+        $filter = $request->query->all();
+
+        if (isset($_GET['category'])) {
+            $category = $this->em->find('AppBundle:Category', $filter['category']);
+            $filter['category'] = $category;
+        }
+
+        $filterForm = $this->formFactory->createNamedBuilder(null, FormType::class, $filter, [
+            'csrf_protection' => false,
+        ])
+            ->add('category', EntityType::class, [
+                'class' => 'AppBundle:Category',
+                'choice_label' => 'name',
+                'label' => 'service.category',
+                'placeholder' => 'service.category.placeholder',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->innerJoin('c.services', 's');
+                },
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'common.select',
+            ])
+            ->setMethod('GET')
+            ->getForm();
+
+        $services = $this->serviceRepository->findAll($filter);
 
         $pagination = $this->paginator->paginate(
             $services,
@@ -49,6 +84,7 @@ class ServiceController extends AbstractController
         return [
             'services' => $services,
             'pagination' => $pagination,
+            'filterForm' => $filterForm->createView(),
         ];
     }
 

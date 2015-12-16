@@ -49,7 +49,7 @@ class ServiceController extends AbstractController
     {
         $filter = $request->query->all();
 
-        if (isset($_GET['category'])) {
+        if ($request->get('category')) {
             $category = $this->em->find('AppBundle:Category', $filter['category']);
             $filter['category'] = $category;
         }

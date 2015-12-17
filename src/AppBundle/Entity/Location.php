@@ -21,6 +21,13 @@ class Location
     private $id;
 
     /**
+     * @Column(type="string")
+     *
+     * @var string
+     */
+    private $country;
+
+    /**
      * @return int
      */
     public function getId()
@@ -34,5 +41,21 @@ class Location
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
     }
 }

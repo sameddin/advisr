@@ -35,7 +35,8 @@ CREATE TABLE service
 
 CREATE TABLE location
 (
-    id bigserial NOT NULL,
+    id      bigserial NOT NULL,
+    country varchar   NOT NULL,
 
     PRIMARY KEY (id)
 );

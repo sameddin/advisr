@@ -28,6 +28,13 @@ class Location
     private $country;
 
     /**
+     * @Column(type="string")
+     *
+     * @var string
+     */
+    private $city;
+
+    /**
      * @return int
      */
     public function getId()
@@ -57,5 +64,21 @@ class Location
     public function setCountry($country)
     {
         $this->country = $country;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
     }
 }

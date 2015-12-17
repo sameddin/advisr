@@ -37,6 +37,7 @@ CREATE TABLE location
 (
     id      bigserial NOT NULL,
     country varchar   NOT NULL,
+    city    varchar   NOT NULL,
 
     PRIMARY KEY (id)
 );

@@ -2,3 +2,4 @@ AppBundle\Entity\Location:
     location{1..100}:
         country: <country()>
         city: <city()>
+        state: <state()>

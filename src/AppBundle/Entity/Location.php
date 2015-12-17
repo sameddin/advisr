@@ -35,6 +35,13 @@ class Location
     private $city;
 
     /**
+     * @Column(type="string")
+     *
+     * @var string
+     */
+    private $state;
+
+    /**
      * @return int
      */
     public function getId()
@@ -80,5 +87,21 @@ class Location
     public function setCity($city)
     {
         $this->city = $city;
+    }
+
+    /**
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
     }
 }

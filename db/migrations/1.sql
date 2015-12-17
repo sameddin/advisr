@@ -38,6 +38,7 @@ CREATE TABLE location
     id      bigserial NOT NULL,
     country varchar   NOT NULL,
     city    varchar   NOT NULL,
+    state   varchar   NOT NULL,
 
     PRIMARY KEY (id)
 );

@@ -32,3 +32,10 @@ CREATE TABLE service
     FOREIGN KEY (user_id) REFERENCES "user",
     FOREIGN KEY (category_id) REFERENCES category
 );
+
+CREATE TABLE location
+(
+    id bigserial NOT NULL,
+
+    PRIMARY KEY (id)
+);

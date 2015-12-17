@@ -25,21 +25,7 @@ class Location
      *
      * @var string
      */
-    private $country;
-
-    /**
-     * @Column(type="string")
-     *
-     * @var string
-     */
-    private $city;
-
-    /**
-     * @Column(type="string")
-     *
-     * @var string
-     */
-    private $state;
+    private $name;
 
     /**
      * @return int
@@ -60,48 +46,16 @@ class Location
     /**
      * @return string
      */
-    public function getCountry()
+    public function getName()
     {
-        return $this->country;
+        return $this->name;
     }
 
     /**
-     * @param string $country
+     * @param string $name
      */
-    public function setCountry($country)
+    public function setName($name)
     {
-        $this->country = $country;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @param string $city
-     */
-    public function setCity($city)
-    {
-        $this->city = $city;
-    }
-
-    /**
-     * @return string
-     */
-    public function getState()
-    {
-        return $this->state;
-    }
-
-    /**
-     * @param string $state
-     */
-    public function setState($state)
-    {
-        $this->state = $state;
+        $this->name = $name;
     }
 }

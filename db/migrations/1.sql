@@ -20,6 +20,14 @@ CREATE TABLE category
     PRIMARY KEY (id)
 );
 
+CREATE TABLE location
+(
+    id   bigserial NOT NULL,
+    name varchar   NOT NULL,
+
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE service
 (
     id          bigserial NOT NULL,
@@ -31,14 +39,4 @@ CREATE TABLE service
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES "user",
     FOREIGN KEY (category_id) REFERENCES category
-);
-
-CREATE TABLE location
-(
-    id      bigserial NOT NULL,
-    country varchar   NOT NULL,
-    city    varchar   NOT NULL,
-    state   varchar   NOT NULL,
-
-    PRIMARY KEY (id)
 );

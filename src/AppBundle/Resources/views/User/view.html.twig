@@ -18,6 +18,8 @@
 
         <p><a href="{{ path('user.edit', {id: user.id }) }}" class="btn btn-success" role="button">
                 <i class="fa fa-pencil fa-lg"></i> {{ 'common.edit'|trans }}</a></p>
+        <p><a href="{{ path('edit.password', {id: user.id }) }}" class="btn btn-success" role="button">
+                <i class="fa fa-pencil fa-lg"></i> {{ 'edit.password'|trans }}</a></p>
         <p><a href="{{ path('service.add') }}" class="btn btn-default" role="button">
                 <i class="fa fa-plus fa-lg"></i> {{ 'service.add'|trans }}</a></p>
 

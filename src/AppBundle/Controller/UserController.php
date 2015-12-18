@@ -2,6 +2,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
+use AppBundle\Form\Type\ChangePasswordType;
 use AppBundle\Form\Type\LoggedUserType;
 use AppBundle\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -79,6 +80,38 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $this->userRepository->save($user);
+
+            return new RedirectResponse($this->router->generate('user.view', [
+                'id' => $user->getId(),
+            ]));
+        }
+
+        return [
+            'form' => $form->createView(),
+            'user' => $user,
+        ];
+    }
+
+    /**
+     * @Route("/{id}/edit/password", name="edit.password")
+     * @Template
+     *
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse|Response
+     */
+    public function changePasswordAction(Request $request, User $user)
+    {
+        $form = $this->formFactory->create(ChangePasswordType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+
+            $password = $this->passwordEncoder
+                ->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+
             $this->userRepository->save($user);
 
             return new RedirectResponse($this->router->generate('user.view', [

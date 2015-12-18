@@ -24,6 +24,7 @@
         <h2>{{ 'service.list'|trans }}</h2>
         {% for service in user.services %}
             <div class="panel panel-default">
+                <div class="panel-heading">{{ service.category.name }}</div>
                 <div class="panel-heading">{{ service.title }}</div>
                 <div class="panel-body">{{ service.description }}</div>
                 <div class="panel-footer">

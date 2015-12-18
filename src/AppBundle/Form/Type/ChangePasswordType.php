@@ -2,6 +2,7 @@
 namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,7 +13,7 @@ class ChangePasswordType extends AbstractType
     {
         $builder
             ->add('password', RepeatedType::class, [
-                'type' => 'password',
+                'type' => PasswordType::class,
                 'first_options' => ['label' => 'new.password'],
                 'second_options' => ['label' => 'new.password.confirm'],
             ])

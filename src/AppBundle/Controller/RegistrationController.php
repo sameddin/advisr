@@ -43,6 +43,11 @@ class RegistrationController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isValid()) {
+
+            $password = $this->passwordEncoder
+                ->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+
             $this->userRepository->save($user);
 
             $this->login($user);

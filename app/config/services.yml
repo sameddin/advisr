@@ -15,6 +15,7 @@ services:
             - [setTokenStorage, [@security.token_storage]]
             - [setSession, [@session]]
             - [setAuthenticationUtils, [@security.authentication_utils]]
+            - [setPasswordEncoder, [@security.password_encoder]]
     app.user_controller:
         class: AppBundle\Controller\UserController
         parent: app.abstract_controller

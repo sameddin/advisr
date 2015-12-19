@@ -26,7 +26,7 @@ security:
                 provider: doctrine
                 csrf_parameter: _csrf_security_token
             logout:
-                path:   logout
+                path: logout
             remember_me:
                 secret: "%secret%"
                 always_remember_me: true

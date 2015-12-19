@@ -55,12 +55,18 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @Column(type="string", length=64)
-     * @NotBlank()
+     * @Column(type="string")
      *
      * @var string
      */
     private $password;
+
+    /**
+     * @NotBlank()
+     *
+     * @var string
+     */
+    private $rawPassword;
 
     /**
      * @Column(type="string")
@@ -167,6 +173,22 @@ class User implements UserInterface
     public function setPassword($password)
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRawPassword()
+    {
+        return $this->rawPassword;
+    }
+
+    /**
+     * @param string $rawPassword
+     */
+    public function setRawPassword($rawPassword)
+    {
+        $this->rawPassword = $rawPassword;
     }
 
     /**

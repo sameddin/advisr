@@ -109,7 +109,7 @@ class UserController extends AbstractController
         if ($form->isValid()) {
 
             $password = $this->passwordEncoder
-                ->encodePassword($user, $user->getPassword());
+                ->encodePassword($user, $user->getRawPassword());
             $user->setPassword($password);
 
             $this->userRepository->save($user);

@@ -2,8 +2,8 @@
 namespace AppBundle\Controller;
 
 use App\Entity\User;
-use AppBundle\Form\Type\ChangePasswordType;
-use AppBundle\Form\Type\LoggedUserType;
+use App\Form\Type\ChangePasswordType;
+use App\Form\Type\LoggedUserType;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;

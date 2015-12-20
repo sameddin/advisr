@@ -2,7 +2,7 @@
 namespace AppBundle\Controller;
 
 use App\Entity\User;
-use AppBundle\Form\Type\UserType;
+use App\Form\Type\UserType;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;

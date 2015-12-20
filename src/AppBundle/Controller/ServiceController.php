@@ -4,7 +4,7 @@ namespace AppBundle\Controller;
 use App\Entity\Category;
 use App\Entity\Service;
 use App\Entity\User;
-use AppBundle\Form\Type\ServiceType;
+use App\Form\Type\ServiceType;
 use App\Repository\ServiceRepository;
 use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

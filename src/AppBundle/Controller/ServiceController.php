@@ -1,9 +1,9 @@
 <?php
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Category;
-use AppBundle\Entity\Service;
-use AppBundle\Entity\User;
+use App\Entity\Category;
+use App\Entity\Service;
+use App\Entity\User;
 use AppBundle\Form\Type\ServiceType;
 use AppBundle\Repository\ServiceRepository;
 use Doctrine\ORM\EntityRepository;
@@ -50,7 +50,7 @@ class ServiceController extends AbstractController
         $filter = $request->query->all();
 
         if ($request->get('category')) {
-            $category = $this->em->find('AppBundle:Category', $filter['category']);
+            $category = $this->em->find('App:Category', $filter['category']);
             $filter['category'] = $category;
         }
 
@@ -58,7 +58,7 @@ class ServiceController extends AbstractController
             'csrf_protection' => false,
         ])
             ->add('category', EntityType::class, [
-                'class' => 'AppBundle:Category',
+                'class' => 'App:Category',
                 'choice_label' => 'name',
                 'label' => 'service.category',
                 'placeholder' => 'service.category.placeholder',

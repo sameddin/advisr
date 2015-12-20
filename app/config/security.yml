@@ -1,13 +1,13 @@
 security:
     encoders:
-        AppBundle\Entity\User:
+        App\Entity\User:
             algorithm: bcrypt
             cost: 4
 
     providers:
         doctrine:
             entity:
-                class: AppBundle:User
+                class: App:User
                 property: email
 
     firewalls:

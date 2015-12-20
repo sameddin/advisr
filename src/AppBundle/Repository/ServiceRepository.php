@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Service;
+use App\Entity\Service;
 use Doctrine\ORM\EntityRepository;
 
 class ServiceRepository extends EntityRepository

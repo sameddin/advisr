@@ -41,9 +41,9 @@ services:
         class: AppBundle\Repository\UserRepository
         factory: [@doctrine.orm.entity_manager, getRepository]
         arguments:
-            - AppBundle:User
+            - App:User
     app.service_repository:
         class: AppBundle\Repository\ServiceRepository
         factory: [@doctrine.orm.entity_manager, getRepository]
         arguments:
-            - AppBundle:Service
+            - App:Service

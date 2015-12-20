@@ -25,7 +25,7 @@ class ServiceType extends AbstractType
                 'label' => 'service.description',
             ])
             ->add('category', EntityType::class, [
-                    'class' => 'AppBundle:Category',
+                    'class' => 'App:Category',
                     'choice_label' => 'name',
                     'placeholder' => 'service.category.placeholder',
                     'label' => 'service.category',

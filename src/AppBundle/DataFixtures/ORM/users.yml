@@ -1,4 +1,4 @@
-AppBundle\Entity\User:
+App\Entity\User:
     user1:
         firstName: Эльнур
         lastName: Абдуррахимов

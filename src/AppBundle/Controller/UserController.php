@@ -1,7 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\User;
+use App\Entity\User;
 use AppBundle\Form\Type\ChangePasswordType;
 use AppBundle\Form\Type\LoggedUserType;
 use AppBundle\Repository\UserRepository;

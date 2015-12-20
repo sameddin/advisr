@@ -22,7 +22,8 @@ class LoggedUserType extends AbstractType
                 'label' => 'user.last_name',
             ])
             ->add('about', TextType::class, [
-                'label' => 'user.about'
+                'label' => 'user.about',
+                'required' => false,
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'common.save',

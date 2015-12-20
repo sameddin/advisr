@@ -1,7 +1,6 @@
 <?php
-namespace AppBundle\DependencyInjection\Compiler;
+namespace App\Util;
 
-use App\Util\FixturesFinder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 

@@ -1,6 +1,6 @@
 <?php
 
-use AppBundle\DependencyInjection\Compiler\OverrideServiceCompilerPass;
+use App\Util\OverrideServiceCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;

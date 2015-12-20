@@ -38,12 +38,12 @@ services:
             - @app.service_repository
 
     app.user_repository:
-        class: AppBundle\Repository\UserRepository
+        class: App\Repository\UserRepository
         factory: [@doctrine.orm.entity_manager, getRepository]
         arguments:
             - App:User
     app.service_repository:
-        class: AppBundle\Repository\ServiceRepository
+        class: App\Repository\ServiceRepository
         factory: [@doctrine.orm.entity_manager, getRepository]
         arguments:
             - App:Service

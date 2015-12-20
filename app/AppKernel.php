@@ -1,5 +1,7 @@
 <?php
 
+use AppBundle\DependencyInjection\Compiler\OverrideServiceCompilerPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -37,5 +39,12 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load($this->getRootDir().'/config/config_'.$this->getEnvironment().'.yml');
+    }
+
+    protected function prepareContainer(ContainerBuilder $container)
+    {
+        parent::prepareContainer($container);
+
+        $container->addCompilerPass(new OverrideServiceCompilerPass());
     }
 }

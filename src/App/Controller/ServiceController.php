@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Controller;
+namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Service;

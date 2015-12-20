@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Controller;
+namespace App\Controller;
 
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;

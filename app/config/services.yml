@@ -5,7 +5,7 @@ parameters:
 
 services:
     app.abstract_controller:
-        class: AppBundle\Controller\AbstractController
+        class: App\Controller\AbstractController
         abstract: true
         calls:
             - [setFormFactory, [@form.factory]]
@@ -17,22 +17,22 @@ services:
             - [setAuthenticationUtils, [@security.authentication_utils]]
             - [setPasswordEncoder, [@security.password_encoder]]
     app.user_controller:
-        class: AppBundle\Controller\UserController
+        class: App\Controller\UserController
         parent: app.abstract_controller
         arguments:
             - @app.user_repository
     app.home_controller:
-        class: AppBundle\Controller\HomeController
+        class: App\Controller\HomeController
     app.registration_controller:
-        class: AppBundle\Controller\RegistrationController
+        class: App\Controller\RegistrationController
         parent: app.abstract_controller
         arguments:
             - @app.user_repository
     app.security_controller:
-        class: AppBundle\Controller\SecurityController
+        class: App\Controller\SecurityController
         parent: app.abstract_controller
     app.service_controller:
-        class: AppBundle\Controller\ServiceController
+        class: App\Controller\ServiceController
         parent: app.abstract_controller
         arguments:
             - @app.service_repository

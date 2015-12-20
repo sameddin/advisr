@@ -1,5 +1,17 @@
-app:
-    resource: "@AppBundle/Controller/"
+home:
+    resource: App\Controller\HomeController
+    type:     annotation
+security:
+    resource: App\Controller\SecurityController
+    type:     annotation
+registration:
+    resource: App\Controller\RegistrationController
+    type:     annotation
+user:
+    resource: App\Controller\UserController
+    type:     annotation
+service:
+    resource: App\Controller\ServiceController
     type:     annotation
 logout:
     path: /logout

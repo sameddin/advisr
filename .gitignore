@@ -4,8 +4,10 @@
 /vendor/
 /web/bundles/
 /app/bootstrap.php.cache
-/app/cache/*
-!app/cache/.gitkeep
+/var/*
+!/var/cache
+/var/cache/*
+!/var/cache/.gitkeep
 /app/logs/*
 !app/logs/.gitkeep
 /bower_components

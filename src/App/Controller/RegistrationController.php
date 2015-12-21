@@ -39,7 +39,7 @@ class RegistrationController extends AbstractController
     public function registerAction(Request $request)
     {
         $user = new User();
-        $form = $this->formFactory->create(new UserType(), $user);
+        $form = $this->formFactory->create(UserType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isValid()) {

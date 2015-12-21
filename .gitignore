@@ -2,6 +2,7 @@
 /bin/
 !/bin/console
 !/bin/symfony_requirements
+!/bin/redb
 /composer.phar
 /vendor/
 /web/bundles/

@@ -100,7 +100,7 @@ class ServiceController extends AbstractController
         $user = $this->getUser();
         $service = new Service();
         $service->setUser($user);
-        $form = $this->formFactory->create(new ServiceType(), $service);
+        $form = $this->formFactory->create(ServiceType::class, $service);
 
         $form->handleRequest($request);
 
@@ -127,7 +127,7 @@ class ServiceController extends AbstractController
      */
     public function editAction(Request $request, Service $service)
     {
-        $form = $this->formFactory->create(new ServiceType(), $service);
+        $form = $this->formFactory->create(ServiceType::class, $service);
 
         $form->handleRequest($request);
 

@@ -7,8 +7,11 @@ user.email: Email
 user.first_name: Имя
 user.last_name: Фамилия
 user.password: Пароль
+user.password.new: Новый пароль
+user.password.confirm: Подтвердите пароль
 user.password.repeat: Ещё раз пароль
 user.password.current: Текущий пароль
+user.password.edit: Изменить пароль
 user.about: О себе
 email.placeholder: Email
 password.placeholder: Пароль
@@ -28,6 +31,3 @@ service.description.placeholder: Введите описание услуги
 service.category.placeholder: Выберите категорию услуги
 Previous: Предыдущая
 Next: Следующая
-edit.password: Изменить пароль
-new.password: Новый пароль
-new.password.confirm: Подтвердите пароль

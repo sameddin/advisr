@@ -20,8 +20,12 @@ class ChangePasswordType extends AbstractType
             ])
             ->add('raw_password', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'first_options' => ['label' => 'new.password'],
-                'second_options' => ['label' => 'new.password.confirm'],
+                'first_options' => [
+                    'label' => 'user.password.new',
+                ],
+                'second_options' => [
+                    'label' => 'user.password.confirm',
+                ],
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'common.save',

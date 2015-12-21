@@ -104,3 +104,6 @@ ornicar_gravatar:
 knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
+
+elnur_database:
+    migrations_dir: %kernel.root_dir%/../db/migrations

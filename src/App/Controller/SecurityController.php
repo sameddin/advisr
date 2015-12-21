@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Form\Type\LoginType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
@@ -15,7 +16,7 @@ class SecurityController extends AbstractController
      */
     public function loginAction()
     {
-        $form = $this->formFactory->createNamedBuilder(null, 'login')
+        $form = $this->formFactory->createNamedBuilder(null, LoginType::class)
             ->setAction($this->router->generate('security.login'))
             ->getForm();
 

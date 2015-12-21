@@ -8,8 +8,9 @@
 !/var/cache
 /var/cache/*
 !/var/cache/.gitkeep
-/app/logs/*
-!app/logs/.gitkeep
+!/var/logs
+/var/logs/*
+!/var/logs/.gitkeep
 /bower_components
 web/css/
 web/js/

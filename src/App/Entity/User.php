@@ -62,7 +62,7 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @NotBlank()
+     * @NotBlank(groups={"Registration"})
      *
      * @var string
      */

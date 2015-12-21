@@ -37,7 +37,11 @@ class UserType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'App\Entity\User'
+            'data_class' => 'App\Entity\User',
+            'validation_groups' => [
+                'Default',
+                'Registration',
+            ],
         ]);
     }
 

@@ -1,1 +1,1 @@
-dropdb advisr && createdb advisr -O advisr && app/console e:d:m && app/console h:d:f:l -n
+dropdb advisr && createdb advisr -O advisr && bin/console e:d:m && bin/console h:d:f:l -n

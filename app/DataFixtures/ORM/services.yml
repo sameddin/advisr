@@ -2,5 +2,5 @@ App\Entity\Service:
     service{1..100}:
         title: <word()>
         description: <text()>
-        user: @user*
-        category: @category*
+        user: "@user*"
+        category: "@category*"

@@ -8,26 +8,26 @@ services:
         class: App\Controller\AbstractController
         abstract: true
         calls:
-            - [setFormFactory, [@form.factory]]
-            - [setEm, [@doctrine.orm.entity_manager]]
-            - [setRouter, [@router]]
-            - [setPaginator, [@knp_paginator]]
-            - [setTokenStorage, [@security.token_storage]]
-            - [setSession, [@session]]
-            - [setAuthenticationUtils, [@security.authentication_utils]]
-            - [setPasswordEncoder, [@security.password_encoder]]
+            - [setFormFactory, ["@form.factory"]]
+            - [setEm, ["@doctrine.orm.entity_manager"]]
+            - [setRouter, ["@router"]]
+            - [setPaginator, ["@knp_paginator"]]
+            - [setTokenStorage, ["@security.token_storage"]]
+            - [setSession, ["@session"]]
+            - [setAuthenticationUtils, ["@security.authentication_utils"]]
+            - [setPasswordEncoder, ["@security.password_encoder"]]
     app.user_controller:
         class: App\Controller\UserController
         parent: app.abstract_controller
         arguments:
-            - @app.user_repository
+            - "@app.user_repository"
     app.home_controller:
         class: App\Controller\HomeController
     app.registration_controller:
         class: App\Controller\RegistrationController
         parent: app.abstract_controller
         arguments:
-            - @app.user_repository
+            - "@app.user_repository"
     app.security_controller:
         class: App\Controller\SecurityController
         parent: app.abstract_controller
@@ -35,16 +35,16 @@ services:
         class: App\Controller\ServiceController
         parent: app.abstract_controller
         arguments:
-            - @app.service_repository
+            - "@app.service_repository"
 
     app.user_repository:
         class: App\Repository\UserRepository
-        factory: [@doctrine.orm.entity_manager, getRepository]
+        factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - App:User
     app.service_repository:
         class: App\Repository\ServiceRepository
-        factory: [@doctrine.orm.entity_manager, getRepository]
+        factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - App:Service
 

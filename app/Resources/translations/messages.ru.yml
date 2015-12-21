@@ -8,6 +8,7 @@ user.first_name: Имя
 user.last_name: Фамилия
 user.password: Пароль
 user.password.repeat: Ещё раз пароль
+user.password.current: Текущий пароль
 user.about: О себе
 email.placeholder: Email
 password.placeholder: Пароль

@@ -30,6 +30,10 @@ class RawUserPasswordEncoder
 
     private function encodePassword(User $user)
     {
+        if (!$user->getRawPassword()) {
+            return;
+        }
+
         $password = $this->passwordEncoder->encodePassword($user, $user->getRawPassword());
         $user->setPassword($password);
     }

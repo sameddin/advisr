@@ -7,7 +7,6 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 abstract class AbstractController
@@ -46,11 +45,6 @@ abstract class AbstractController
      * @var AuthenticationUtils
      */
     protected $authenticationUtils;
-
-    /**
-     * @var PasswordEncoderInterface
-     */
-    protected $passwordEncoder;
 
     /**
      * @param FormFactoryInterface $formFactory
@@ -106,13 +100,5 @@ abstract class AbstractController
     public function setAuthenticationUtils(AuthenticationUtils $authenticationUtils)
     {
         $this->authenticationUtils = $authenticationUtils;
-    }
-
-    /**
-     * @param PasswordEncoderInterface $passwordEncoder
-     */
-    public function setPasswordEncoder($passwordEncoder)
-    {
-        $this->passwordEncoder = $passwordEncoder;
     }
 }

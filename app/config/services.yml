@@ -15,12 +15,12 @@ services:
             - [setTokenStorage, ["@security.token_storage"]]
             - [setSession, ["@session"]]
             - [setAuthenticationUtils, ["@security.authentication_utils"]]
-            - [setPasswordEncoder, ["@security.password_encoder"]]
     app.user_controller:
         class: App\Controller\UserController
         parent: app.abstract_controller
         arguments:
             - "@app.user_repository"
+            - "@app.user_manager"
     app.home_controller:
         class: App\Controller\HomeController
     app.registration_controller:
@@ -52,3 +52,15 @@ services:
         class: App\Form\Extension\NoValidateExtension
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+
+    app.listener.user_listener:
+        class: App\Listener\RawUserPasswordEncoder
+        arguments: ["@security.password_encoder"]
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+
+    app.user_manager:
+        class: App\Manager\UserManager
+        arguments:
+            - "@app.user_repository"
+            - "@security.password_encoder"

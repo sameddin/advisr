@@ -4,6 +4,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\Type\ChangePasswordType;
 use App\Form\Type\LoggedUserType;
+use App\Manager\UserManager;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -22,11 +23,18 @@ class UserController extends AbstractController
     private $userRepository;
 
     /**
-     * @param UserRepository $userRepository
+     * @var UserManager
      */
-    public function __construct(UserRepository $userRepository)
+    private $userManager;
+
+    /**
+     * @param UserRepository $userRepository
+     * @param UserManager $userManager
+     */
+    public function __construct(UserRepository $userRepository, UserManager $userManager)
     {
         $this->userRepository = $userRepository;
+        $this->userManager = $userManager;
     }
 
     /**
@@ -107,12 +115,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            $password = $this->passwordEncoder
-                ->encodePassword($user, $user->getRawPassword());
-            $user->setPassword($password);
-
-            $this->userRepository->save($user);
+            $this->userManager->save($user);
 
             return new RedirectResponse($this->router->generate('user.view', [
                 'id' => $user->getId(),

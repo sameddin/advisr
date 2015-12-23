@@ -5,7 +5,6 @@ use App\Entity\User;
 use App\Form\Type\ChangePasswordType;
 use App\Form\Type\LoggedUserType;
 use App\Manager\UserManager;
-use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,22 +17,15 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends AbstractController
 {
     /**
-     * @var UserRepository
-     */
-    private $userRepository;
-
-    /**
      * @var UserManager
      */
     private $userManager;
 
     /**
-     * @param UserRepository $userRepository
      * @param UserManager $userManager
      */
-    public function __construct(UserRepository $userRepository, UserManager $userManager)
+    public function __construct(UserManager $userManager)
     {
-        $this->userRepository = $userRepository;
         $this->userManager = $userManager;
     }
 
@@ -46,7 +38,7 @@ class UserController extends AbstractController
      */
     public function listAction(Request $request)
     {
-        $users = $this->userRepository->findAll();
+        $users = $this->userManager->findAll();
 
         $pagination = $this->paginator->paginate(
             $users,
@@ -88,7 +80,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->userRepository->save($user);
+            $this->userManager->save($user);
 
             return new RedirectResponse($this->router->generate('user.view', [
                 'id' => $user->getId(),

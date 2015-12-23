@@ -49,4 +49,12 @@ class UserManager
         $password = $this->passwordEncoder->encodePassword($user, $user->getRawPassword());
         $user->setPassword($password);
     }
+
+    /**
+     * @return User[]
+     */
+    public function findAll(): array
+    {
+        return $this->userRepository->findAll();
+    }
 }

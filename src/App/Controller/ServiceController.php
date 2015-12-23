@@ -5,7 +5,7 @@ use App\Entity\Category;
 use App\Entity\Service;
 use App\Entity\User;
 use App\Form\Type\ServiceType;
-use App\Repository\ServiceRepository;
+use App\Manager\ServiceManager;
 use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -22,16 +22,16 @@ use Symfony\Component\HttpFoundation\Response;
 class ServiceController extends AbstractController
 {
     /**
-     * @var ServiceRepository
+     * @var ServiceManager
      */
-    private $serviceRepository;
+    private $serviceManager;
 
     /**
-     * @param ServiceRepository $serviceRepository
+     * @param ServiceManager $serviceManager
      */
-    public function __construct(ServiceRepository $serviceRepository)
+    public function __construct(ServiceManager $serviceManager)
     {
-        $this->serviceRepository = $serviceRepository;
+        $this->serviceManager = $serviceManager;
     }
 
     /**
@@ -73,7 +73,7 @@ class ServiceController extends AbstractController
             ->setMethod('GET')
             ->getForm();
 
-        $services = $this->serviceRepository->findAll($filter);
+        $services = $this->serviceManager->findAll($filter);
 
         $pagination = $this->paginator->paginate(
             $services,
@@ -105,7 +105,7 @@ class ServiceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->serviceRepository->save($service);
+            $this->serviceManager->save($service);
 
             return new RedirectResponse($this->router->generate('user.view', [
                 'id' => $user->getId(),
@@ -132,7 +132,7 @@ class ServiceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $this->serviceRepository->save($service);
+            $this->serviceManager->save($service);
 
             return new RedirectResponse($this->router->generate('user.view', [
                 'id' => $service->getUser()->getId(),
@@ -152,7 +152,7 @@ class ServiceController extends AbstractController
      */
     public function deleteAction(Service $service)
     {
-        $this->serviceRepository->remove($service);
+        $this->serviceManager->remove($service);
 
         return new RedirectResponse($this->router->generate('user.view', [
             'id' => $service->getUser()->getId(),

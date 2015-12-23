@@ -34,7 +34,7 @@ services:
         class: App\Controller\ServiceController
         parent: app.abstract_controller
         arguments:
-            - "@app.service_repository"
+            - "@app.service_manager"
 
     app.user_repository:
         class: App\Repository\UserRepository
@@ -63,3 +63,7 @@ services:
         arguments:
             - "@app.user_repository"
             - "@security.password_encoder"
+    app.service_manager:
+        class: App\Manager\ServiceManager
+        arguments:
+            - "@app.service_repository"

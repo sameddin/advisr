@@ -17,8 +17,7 @@ class ServiceRepository extends EntityRepository
         if (isset($filter['category'])) {
             $qb
                 ->andWhere('s.category = :categoryId')
-                ->setParameter('categoryId', $filter['category'])
-            ;
+                ->setParameter('categoryId', $filter['category']);
         }
 
         return $qb

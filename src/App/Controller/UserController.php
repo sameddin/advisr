@@ -67,7 +67,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/edit/", name="user.edit")
+     * @Route("/edit", name="user.edit")
      * @Template
      *
      * @param Request $request

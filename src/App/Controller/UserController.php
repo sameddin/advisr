@@ -67,15 +67,15 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="user.edit", requirements={"id": "\d+"})
+     * @Route("/edit/", name="user.edit")
      * @Template
      *
      * @param Request $request
-     * @param User $user
      * @return RedirectResponse|Response
      */
-    public function editAction(Request $request, User $user)
+    public function editAction(Request $request)
     {
+        $user = $this->getUser();
         $form = $this->formFactory->create(LoggedUserType::class, $user);
         $form->handleRequest($request);
 

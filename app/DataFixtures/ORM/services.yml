@@ -4,3 +4,4 @@ App\Entity\Service:
         description: <text()>
         user: "@user*"
         category: "@category*"
+        locations: ["@location*"]

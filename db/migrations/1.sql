@@ -40,3 +40,13 @@ CREATE TABLE service
     FOREIGN KEY (user_id) REFERENCES "user",
     FOREIGN KEY (category_id) REFERENCES category
 );
+
+CREATE TABLE service_location
+(
+    service_id  bigint NOT NULL,
+    location_id bigint NOT NULL,
+
+    PRIMARY KEY (service_id, location_id),
+    FOREIGN KEY (service_id) REFERENCES service,
+    FOREIGN KEY (location_id) REFERENCES location
+);

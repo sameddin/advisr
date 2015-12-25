@@ -67,7 +67,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/edit/{id}", name="user.edit")
+     * @Route("/edit/{id}", name="user.edit", requirements={"id": "\d+"})
      * @Template
      *
      * @param Request $request
@@ -94,15 +94,15 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit/password", name="edit.password")
+     * @Route("/edit/password", name="edit.password")
      * @Template
      *
      * @param Request $request
-     * @param User $user
      * @return RedirectResponse|Response
      */
-    public function changePasswordAction(Request $request, User $user)
+    public function changePasswordAction(Request $request)
     {
+        $user = $this->getUser();
         $form = $this->formFactory->create(ChangePasswordType::class, $user);
         $form->handleRequest($request);
 
@@ -118,5 +118,13 @@ class UserController extends AbstractController
             'form' => $form->createView(),
             'user' => $user,
         ];
+    }
+
+    /**
+     * @return User
+     */
+    private function getUser()
+    {
+        return $this->tokenStorage->getToken()->getUser();
     }
 }

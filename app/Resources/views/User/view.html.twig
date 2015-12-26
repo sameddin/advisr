@@ -26,6 +26,12 @@
         {% for service in user.services %}
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    {% for location in service.locations %}
+                        <dl class="dl-horizontal">
+                            <dt>{{ 'service.location'|trans }}</dt>
+                            <dd>{{ location.name }}</dd>
+                        </dl>
+                    {% endfor %}
                     <dl class="dl-horizontal">
                         <dt>{{ 'service.category'|trans }}</dt>
                         <dd>{{ service.category.name }}</dd>

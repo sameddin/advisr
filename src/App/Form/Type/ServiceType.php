@@ -30,6 +30,13 @@ class ServiceType extends AbstractType
                     'placeholder' => 'service.category.placeholder',
                     'label' => 'service.category',
             ])
+            ->add('locations', EntityType::class, [
+                'class' => 'App:Location',
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'label' => 'service.locations',
+            ])
             ->add('save', SubmitType::class, [
                     'label' => 'common.save'
             ]);

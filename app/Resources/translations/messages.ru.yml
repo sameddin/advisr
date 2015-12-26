@@ -26,6 +26,7 @@ service.add: Добавить услугу
 service.title: Название услуги
 service.description: Описание услуги
 service.category: Категория услуги
+service.locations: Укажите локацию услуги
 service.title.placeholder: Введите название услуги
 service.description.placeholder: Введите описание услуги
 service.category.placeholder: Выберите категорию услуги

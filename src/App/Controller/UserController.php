@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/users", service="app.user_controller")
+ * @Route(service="app.user_controller")
  */
 class UserController extends AbstractController
 {
@@ -30,7 +30,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route(name="user.list")
+     * @Route("/users", name="user.list")
      * @Template
      *
      * @param Request $request
@@ -53,7 +53,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="user.view", requirements={"id": "\d+"})
+     * @Route("/user/{id}", name="user.view", requirements={"id": "\d+"})
      * @Template
      *
      * @param User $user
@@ -67,7 +67,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/edit", name="user.edit")
+     * @Route("/user/edit", name="user.edit")
      * @Template
      *
      * @param Request $request
@@ -94,7 +94,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/edit/password", name="edit.password")
+     * @Route("/user/change-password", name="user.change_password")
      * @Template
      *
      * @param Request $request

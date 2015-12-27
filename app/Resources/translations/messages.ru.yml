@@ -11,7 +11,7 @@ user.password.new: Новый пароль
 user.password.confirm: Подтвердите пароль
 user.password.repeat: Ещё раз пароль
 user.password.current: Текущий пароль
-user.password.edit: Изменить пароль
+user.change_password: Изменить пароль
 user.about: О себе
 email.placeholder: Email
 password.placeholder: Пароль

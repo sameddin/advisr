@@ -4,14 +4,11 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Service;
 use App\Entity\User;
+use App\Form\Type\FilterType;
 use App\Form\Type\ServiceType;
 use App\Manager\ServiceManager;
-use Doctrine\ORM\EntityRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,22 +51,9 @@ class ServiceController extends AbstractController
             $filter['category'] = $category;
         }
 
-        $filterForm = $this->formFactory->createNamedBuilder(null, FormType::class, $filter, [
+        $filterForm = $this->formFactory->createNamedBuilder(null, FilterType::class, $filter, [
             'csrf_protection' => false,
         ])
-            ->add('category', EntityType::class, [
-                'class' => 'App:Category',
-                'choice_label' => 'name',
-                'label' => 'service.category',
-                'placeholder' => 'service.category.placeholder',
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('c')
-                        ->innerJoin('c.services', 's');
-                },
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'common.select',
-            ])
             ->setMethod('GET')
             ->getForm();
 

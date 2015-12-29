@@ -53,7 +53,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user/{id}", name="user.view", requirements={"id": "\d+"})
+     * @Route("/users/{id}", name="user.view", requirements={"id": "\d+"})
      * @Template
      *
      * @param User $user

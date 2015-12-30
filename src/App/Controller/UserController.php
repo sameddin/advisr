@@ -119,12 +119,4 @@ class UserController extends AbstractController
             'user' => $user,
         ];
     }
-
-    /**
-     * @return User
-     */
-    private function getUser()
-    {
-        return $this->tokenStorage->getToken()->getUser();
-    }
 }

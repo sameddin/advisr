@@ -3,7 +3,6 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Service;
-use App\Entity\User;
 use App\Form\Type\FilterType;
 use App\Form\Type\ServiceType;
 use App\Manager\ServiceManager;
@@ -141,13 +140,5 @@ class ServiceController extends AbstractController
         return new RedirectResponse($this->router->generate('user.view', [
             'id' => $service->getUser()->getId(),
         ]));
-    }
-
-    /**
-     * @return User
-     */
-    private function getUser()
-    {
-        return $this->tokenStorage->getToken()->getUser();
     }
 }

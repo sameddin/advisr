@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\User;
 use Doctrine\ORM\EntityManager;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -100,5 +101,13 @@ abstract class AbstractController
     public function setAuthenticationUtils(AuthenticationUtils $authenticationUtils)
     {
         $this->authenticationUtils = $authenticationUtils;
+    }
+
+    /**
+     * @return User
+     */
+    protected function getUser()
+    {
+        return $this->tokenStorage->getToken()->getUser();
     }
 }

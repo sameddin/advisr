@@ -6,6 +6,7 @@ use App\Form\Type\ChangePasswordType;
 use App\Form\Type\LoggedUserType;
 use App\Manager\UserManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,6 +70,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user/edit", name="user.edit")
      * @Template
+     * @Security("is_authenticated()")
      *
      * @param Request $request
      * @return RedirectResponse|Response
@@ -96,6 +98,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user/change-password", name="user.change_password")
      * @Template
+     * @Security("is_authenticated()")
      *
      * @param Request $request
      * @return RedirectResponse|Response

@@ -7,6 +7,7 @@ use App\Form\Type\FilterType;
 use App\Form\Type\ServiceType;
 use App\Manager\ServiceManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -74,6 +75,7 @@ class ServiceController extends AbstractController
     /**
      * @Route("/add", name="service.add")
      * @Template
+     * @Security("is_authenticated()")
      *
      * @param Request $request
      * @return RedirectResponse|Response
@@ -103,6 +105,7 @@ class ServiceController extends AbstractController
     /**
      * @Route("/edit/{id}", name="service.edit")
      * @Template
+     * @Security("service.getUser() == user")
      *
      * @param Request $request
      * @param Service $service
@@ -129,6 +132,7 @@ class ServiceController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="service.delete")
+     * @Security("service.getUser() == user")
      *
      * @param Service $service
      * @return RedirectResponse|Response

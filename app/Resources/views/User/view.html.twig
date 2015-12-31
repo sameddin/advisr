@@ -1,5 +1,4 @@
-{% extends 'layout.html.twig' %}
-
+{% extends '::layout.html.twig' %}
 {% block content %}
     <div>
         <div class="row">
@@ -16,12 +15,14 @@
             </div>
         </div>
 
-        <p><a href="{{ path('user.edit') }}" class="btn btn-success" role="button">
-                <i class="fa fa-pencil fa-lg"></i> {{ 'common.edit'|trans }}</a></p>
-        <p><a href="{{ path('user.change_password') }}" class="btn btn-success" role="button">
-                <i class="fa fa-pencil fa-lg"></i> {{ 'user.change_password'|trans }}</a></p>
-        <p><a href="{{ path('service.add') }}" class="btn btn-default" role="button">
-                <i class="fa fa-plus fa-lg"></i> {{ 'service.add'|trans }}</a></p>
+        {% if is_granted(expression('is_authenticated()')) %}
+            <p><a href="{{ path('user.edit') }}" class="btn btn-success" role="button">
+                    <i class="fa fa-pencil fa-lg"></i> {{ 'common.edit'|trans }}</a></p>
+            <p><a href="{{ path('user.change_password') }}" class="btn btn-success" role="button">
+                    <i class="fa fa-pencil fa-lg"></i> {{ 'user.change_password'|trans }}</a></p>
+            <p><a href="{{ path('service.add') }}" class="btn btn-default" role="button">
+                    <i class="fa fa-plus fa-lg"></i> {{ 'service.add'|trans }}</a></p>
+        {% endif %}
 
         {% for service in user.services %}
             <div class="panel panel-default">
@@ -48,13 +49,14 @@
                     </dl>
                 </div>
                 <div class="panel-footer">
-                    <a href="{{ path('service.edit', {id: service.id }) }}" class="btn btn-success" role="button">
-                        <i class="fa fa-pencil fa-lg"></i> {{ 'common.edit'|trans }}</a>
-                    <a href="{{ path('service.delete', {id: service.id }) }}" class="btn btn-danger" role="button">
-                        <i class="fa fa-trash-o fa-lg"></i> {{ 'common.delete'|trans }}</a>
+                    {% if is_granted(expression('is_authenticated()')) %}
+                        <a href="{{ path('service.edit', {id: service.id }) }}" class="btn btn-success" role="button">
+                            <i class="fa fa-pencil fa-lg"></i> {{ 'common.edit'|trans }}</a>
+                        <a href="{{ path('service.delete', {id: service.id }) }}" class="btn btn-danger" role="button">
+                            <i class="fa fa-trash-o fa-lg"></i> {{ 'common.delete'|trans }}</a>
+                    {% endif %}
                 </div>
             </div>
         {% endfor %}
     </div>
-
 {% endblock %}

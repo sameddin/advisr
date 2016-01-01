@@ -15,19 +15,6 @@
             </div>
         </div>
 
-        {% if is_granted(expression('is_authenticated()')) %}
-            <p>
-                <a href="{{ path('user.edit') }}" class="btn btn-success">
-                    <i class="fa fa-pencil fa-lg"></i> {{ 'common.edit'|trans }}
-                </a>
-            </p>
-            <p>
-                <a href="{{ path('user.change_password') }}" class="btn btn-success">
-                    <i class="fa fa-pencil fa-lg"></i> {{ 'user.change_password'|trans }}
-                </a>
-            </p>
-        {% endif %}
-
         {% if is_granted('add') and app.user == user %}
             <p>
                 <a href="{{ path('service.add') }}" class="btn btn-default">

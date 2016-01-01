@@ -67,3 +67,9 @@ services:
         class: App\Manager\ServiceManager
         arguments:
             - "@app.service_repository"
+
+    app.service_voter:
+            class: App\Security\ServiceVoter
+            tags:
+                - { name: security.voter }
+            public: false

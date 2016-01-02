@@ -46,6 +46,8 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - App:Service
+        calls:
+            - [setPaginator, ["@knp_paginator"]]
 
     app.form.no_validate_extension:
         class: App\Form\Extension\NoValidateExtension

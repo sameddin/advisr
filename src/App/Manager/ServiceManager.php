@@ -3,6 +3,7 @@ namespace App\Manager;
 
 use App\Entity\Service;
 use App\Repository\ServiceRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 
 class ServiceManager
 {
@@ -21,11 +22,13 @@ class ServiceManager
 
     /**
      * @param $filter
-     * @return Service[]
+     * @param int $page
+     * @param int $limit
+     * @return PaginationInterface
      */
-    public function findAll($filter): array
+    public function findAll($filter, $page, $limit): PaginationInterface
     {
-        return $this->serviceRepository->findAll($filter);
+        return $this->serviceRepository->findAll($filter, $page, $limit);
     }
 
     /**

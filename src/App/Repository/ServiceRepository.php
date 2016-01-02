@@ -3,15 +3,33 @@ namespace App\Repository;
 
 use App\Entity\Service;
 use Doctrine\ORM\EntityRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class ServiceRepository extends EntityRepository
 {
     /**
+     * @var PaginatorInterface
+     */
+    private $paginator;
+
+    /**
+     * @param PaginatorInterface $paginator
+     */
+    public function setPaginator(PaginatorInterface $paginator)
+    {
+        $this->paginator = $paginator;
+    }
+
+    /**
      * @param array $filter
-     * @return Service[]
+     * @return PaginationInterface
      */
     public function findAll(array $filter = [])
     {
+        $page = func_get_arg(1);
+        $limit = func_get_arg(2);
+
         $qb = $this->createQueryBuilder('s');
 
         if (isset($filter['category'])) {
@@ -20,9 +38,7 @@ class ServiceRepository extends EntityRepository
                 ->setParameter('categoryId', $filter['category']);
         }
 
-        return $qb
-            ->getQuery()
-            ->getResult();
+        return $this->paginator->paginate($qb->getQuery(), $page, $limit);
     }
 
     /**

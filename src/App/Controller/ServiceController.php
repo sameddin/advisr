@@ -57,16 +57,9 @@ class ServiceController extends AbstractController
             ->setMethod('GET')
             ->getForm();
 
-        $services = $this->serviceManager->findAll($filter);
-
-        $pagination = $this->paginator->paginate(
-            $services,
-            $request->query->getInt('page', 1),
-            10
-        );
+        $pagination = $this->serviceManager->findAll($filter, $request->query->getInt('page', 1), 10);
 
         return [
-            'services' => $services,
             'pagination' => $pagination,
             'filterForm' => $filterForm->createView(),
         ];

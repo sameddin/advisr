@@ -17,27 +17,7 @@
         </div>
         <div class="col-md-9">
             {% for service in pagination %}
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        {{ service.title }}
-                    </div>
-                    <div class="panel-body">
-                        {% for location in service.locations %}
-                            <dl class="dl-horizontal">
-                                <dt>{{ 'service.location'|trans }}</dt>
-                                <dd>{{ location.name }}</dd>
-                            </dl>
-                        {% endfor %}
-                        <dl class="dl-horizontal">
-                            <dt>{{ 'service.category'|trans }}</dt>
-                            <dd>{{ service.category.name }}</dd>
-                        </dl>
-                        <dl class="dl-horizontal">
-                            <dt>{{ 'service.description'|trans }}</dt>
-                            <dd>{{ service.description }}</dd>
-                        </dl>
-                    </div>
-                </div>
+                {{ include(':Service:single.html.twig') }}
             {% endfor %}
             <div class="navigation">
                 {{ knp_pagination_render(pagination) }}

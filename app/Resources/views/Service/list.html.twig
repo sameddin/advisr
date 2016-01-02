@@ -21,6 +21,7 @@
                     {% for location in service.locations %}
                         <div class="panel-heading">{{ location.name }}</div>
                     {% endfor %}
+                    <div class="panel-heading">{{ service.category.name }}</div>
                     <div class="panel-heading">{{ service.title }}</div>
                     <div class="panel-body">{{ service.description }}</div>
                 </div>

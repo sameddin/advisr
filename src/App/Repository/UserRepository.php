@@ -3,9 +3,37 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 class UserRepository extends EntityRepository
 {
+    /**
+     * @var PaginatorInterface
+     */
+    private $paginator;
+
+    /**
+     * @param PaginatorInterface $paginator
+     */
+    public function setPaginator(PaginatorInterface $paginator)
+    {
+        $this->paginator = $paginator;
+    }
+
+    /**
+     * @return PaginationInterface
+     */
+    public function findAll()
+    {
+        $page = func_get_arg(0);
+        $limit = func_get_arg(1);
+
+        $qb = $this->createQueryBuilder('u');
+
+        return $this->paginator->paginate($qb->getQuery(), $page, $limit);
+    }
+
     /**
      * @param array $array
      * @return User[]

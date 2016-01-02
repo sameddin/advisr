@@ -41,6 +41,8 @@ services:
         factory: ["@doctrine.orm.entity_manager", getRepository]
         arguments:
             - App:User
+        calls:
+            - [setPaginator, ["@knp_paginator"]]
     app.service_repository:
         class: App\Repository\ServiceRepository
         factory: ["@doctrine.orm.entity_manager", getRepository]

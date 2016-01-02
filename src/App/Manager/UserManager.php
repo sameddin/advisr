@@ -3,6 +3,7 @@ namespace App\Manager;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Knp\Component\Pager\Pagination\PaginationInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserManager
@@ -51,10 +52,12 @@ class UserManager
     }
 
     /**
-     * @return User[]
+     * @param int $page
+     * @param int $limit
+     * @return PaginationInterface
      */
-    public function findAll(): array
+    public function findAll($page, $limit): PaginationInterface
     {
-        return $this->userRepository->findAll();
+        return $this->userRepository->findAll($page, $limit);
     }
 }

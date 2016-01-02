@@ -39,16 +39,9 @@ class UserController extends AbstractController
      */
     public function listAction(Request $request)
     {
-        $users = $this->userManager->findAll();
-
-        $pagination = $this->paginator->paginate(
-            $users,
-            $request->query->getInt('page', 1),
-            10
-        );
+        $pagination = $this->userManager->findAll($request->query->getInt('page', 1), 10);
 
         return [
-            'users' => $users,
             'pagination' => $pagination,
         ];
     }

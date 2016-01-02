@@ -37,9 +37,6 @@ class ServiceController extends AbstractController
      *
      * @param Request $request
      * @return RedirectResponse|Response
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     * @throws \Doctrine\ORM\TransactionRequiredException
      * @internal param Category $category
      */
     public function listAction(Request $request)

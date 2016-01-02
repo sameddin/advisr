@@ -37,7 +37,6 @@ class ServiceController extends AbstractController
      *
      * @param Request $request
      * @return RedirectResponse|Response
-     * @internal param Category $category
      */
     public function listAction(Request $request)
     {

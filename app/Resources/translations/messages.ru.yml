@@ -13,6 +13,8 @@ user.password.repeat: Ещё раз пароль
 user.password.current: Текущий пароль
 user.change_password: Изменить пароль
 user.settings: Настройки
+user.profile: Профиль
+user.profile.edit: Изменить профиль
 user.about: О себе
 email.placeholder: Email
 password.placeholder: Пароль

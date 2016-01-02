@@ -16,6 +16,7 @@ user.settings: Настройки
 user.profile: Профиль
 user.profile.edit: Изменить профиль
 user.about: О себе
+user.about.empty: Информация отсутствует
 email.placeholder: Email
 password.placeholder: Пароль
 security.login: Войти

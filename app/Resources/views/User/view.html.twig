@@ -1,65 +1,69 @@
 {% extends '::layout.html.twig' %}
 {% block content %}
-    <div>
-        <div class="row">
-            <div class="col-sm-9">
-                <h1 class="page">{{ user.fullName }}</h1>
-                <div class="row">
-                    <div class="col-xs-8 col-sm-6">
-                        <img class="img-responsive" src="{{ gravatar(user.email, 360) }}"/>
-                    </div>
-                    <div class="col-xs-8 col-sm-6">
-                        <div>{{ user.about }}</div>
-                    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="user-wrapper">
+                <img class="img-responsive" src="{{ gravatar(user.email, 200) }}"/>
+                <div class="description">
+                    <h4><strong>{{ user.fullName }}</strong></h4>
+                    <hr/>
+                    <h5><strong>{{ 'user.about'|trans }}</strong></h5>
+                    {% if user.about is not empty %}
+                        <p>{{ user.about }}</p>
+                    {% else %}
+                        <p>{{ 'user.about.empty'|trans }}</p>
+                    {% endif %}
+                    <hr/>
+                    {% if is_granted('add') and app.user == user %}
+                        <p>
+                            <a href="{{ path('service.add') }}" class="btn btn-default">
+                                <i class="fa fa-plus fa-lg"></i> {{ 'service.add'|trans }}
+                            </a>
+                        </p>
+                    {% endif %}
                 </div>
             </div>
         </div>
 
-        {% if is_granted('add') and app.user == user %}
-            <p>
-                <a href="{{ path('service.add') }}" class="btn btn-default">
-                    <i class="fa fa-plus fa-lg"></i> {{ 'service.add'|trans }}
-                </a>
-            </p>
-        {% endif %}
-
-        {% for service in user.services %}
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    {% for location in service.locations %}
+        <div class="col-md-9">
+            {% for service in user.services %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {% for location in service.locations %}
+                            <dl class="dl-horizontal">
+                                <dt>{{ 'service.location'|trans }}</dt>
+                                <dd>{{ location.name }}</dd>
+                            </dl>
+                        {% endfor %}
                         <dl class="dl-horizontal">
-                            <dt>{{ 'service.location'|trans }}</dt>
-                            <dd>{{ location.name }}</dd>
+                            <dt>{{ 'service.category'|trans }}</dt>
+                            <dd>{{ service.category.name }}</dd>
                         </dl>
-                    {% endfor %}
-                    <dl class="dl-horizontal">
-                        <dt>{{ 'service.category'|trans }}</dt>
-                        <dd>{{ service.category.name }}</dd>
-                    </dl>
-                    <dl class="dl-horizontal">
-                        <dt>{{ 'service.title'|trans }}</dt>
-                        <dd>{{ service.title }}</dd>
-                    </dl>
+                        <dl class="dl-horizontal">
+                            <dt>{{ 'service.title'|trans }}</dt>
+                            <dd>{{ service.title }}</dd>
+                        </dl>
+                    </div>
+                    <div class="panel-body">
+                        <dl class="dl-horizontal">
+                            <dt>{{ 'service.description'|trans }}</dt>
+                            <dd>{{ service.description }}</dd>
+                        </dl>
+                    </div>
+                    <div class="panel-footer">
+                        {% if is_granted('edit', service) %}
+                            <a href="{{ path('service.edit', {id: service.id }) }}" class="btn btn-success">
+                                <i class="fa fa-pencil fa-lg"></i> {{ 'common.edit'|trans }}
+                            </a>
+                        {% endif %}
+                        {% if is_granted('delete', service) %}
+                            <a href="{{ path('service.delete', {id: service.id }) }}" class="btn btn-danger">
+                                <i class="fa fa-trash-o fa-lg"></i> {{ 'common.delete'|trans }}
+                            </a>
+                        {% endif %}
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <dl class="dl-horizontal">
-                        <dt>{{ 'service.description'|trans }}</dt>
-                        <dd>{{ service.description }}</dd>
-                    </dl>
-                </div>
-                <div class="panel-footer">
-                    {% if is_granted('edit', service) %}
-                        <a href="{{ path('service.edit', {id: service.id }) }}" class="btn btn-success">
-                            <i class="fa fa-pencil fa-lg"></i> {{ 'common.edit'|trans }}
-                        </a>
-                    {% endif %}
-                    {% if is_granted('delete', service) %}
-                        <a href="{{ path('service.delete', {id: service.id }) }}" class="btn btn-danger">
-                            <i class="fa fa-trash-o fa-lg"></i> {{ 'common.delete'|trans }}
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}

@@ -77,3 +77,8 @@ services:
             tags:
                 - { name: security.voter }
             public: false
+
+    faker.provider.util:
+        class: App\DataFixtures\Faker\Provider\UtilProvider
+        tags:
+            - { name: hautelook_alice.faker.provider }

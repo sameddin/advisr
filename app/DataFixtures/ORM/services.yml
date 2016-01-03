@@ -1,7 +1,7 @@
 App\Entity\Service:
     service{1..100}:
         title: <word()>
-        description: <text()>
+        description: <join($fake('paragraphs'), "\n\n")>
         user: "@user*"
         category: "@category*"
         locations: ["@location*"]

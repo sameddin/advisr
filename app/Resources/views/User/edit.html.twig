@@ -11,18 +11,18 @@
         <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-cog"> {{ 'user.settings'|trans }}</i>
+                    <i class="fa fa-cog"></i> {{ 'user.settings'|trans }}
                 </div>
                 <div class="panel-body">
                     <ul class="nav nav-pills nav-stacked">
                         <li role="presentation" class="active">
                             <a href="{{ path('user.edit') }}">
-                                <i class="fa fa-pencil-square-o"> {{ 'user.profile.edit'|trans }}</i>
+                                <i class="fa fa-pencil-square-o"></i> {{ 'user.profile.edit'|trans }}
                             </a>
                         </li>
                         <li role="presentation">
                             <a href="{{ path('user.change_password') }}">
-                                <i class="fa fa-lock"> {{ 'user.change_password'|trans }}</i>
+                                <i class="fa fa-lock"></i> {{ 'user.change_password'|trans }}
                             </a>
                         </li>
                     </ul>
@@ -32,7 +32,7 @@
         <div class="col-md-9">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-user"> {{ 'user.profile'|trans }}</i>
+                        <i class="fa fa-user"></i> {{ 'user.profile'|trans }}
                     </div>
                     <div class="panel-body">{{ form(form) }}</div>
                 </div>

@@ -47,19 +47,19 @@
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="{{ path('user.view', {id: app.user.id }) }}">
-                                            <i class="fa fa-user"> {{ app.user.fullName }}</i>
+                                            <i class="fa fa-user"></i> {{ app.user.fullName }}
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ path('user.edit') }}">
-                                            <i class="fa fa-cog"> {{ 'user.settings'|trans }}</i>
+                                            <i class="fa fa-cog"></i> {{ 'user.settings'|trans }}
                                         </a>
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ logout_url('main') }}">
-                                            <i class="fa fa-sign-out"> {{ 'security.logout'|trans }}</i>
+                                            <i class="fa fa-sign-out"></i> {{ 'security.logout'|trans }}
                                         </a>
                                     </li>
                                 </ul>

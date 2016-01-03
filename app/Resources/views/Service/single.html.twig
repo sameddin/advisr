@@ -5,16 +5,16 @@
     <div class="panel-body">
         {% for location in service.locations %}
             <dl class="dl-horizontal">
-                <dt>{{ 'service.location'|trans }}</dt>
+                <dt><i class="fa fa-globe"></i></dt>
                 <dd>{{ location.name }}</dd>
             </dl>
         {% endfor %}
         <dl class="dl-horizontal">
-            <dt>{{ 'service.category'|trans }}</dt>
+            <dt><i class="fa fa-tag"></i></dt>
             <dd>{{ service.category.name }}</dd>
         </dl>
         <dl class="dl-horizontal">
-            <dt>{{ 'service.description'|trans }}</dt>
+            <dt><i class="fa fa-info"></i></dt>
             <dd>{{ service.description }}</dd>
         </dl>
     </div>

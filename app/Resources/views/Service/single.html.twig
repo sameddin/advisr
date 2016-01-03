@@ -3,20 +3,13 @@
         {{ service.title }}
     </div>
     <div class="panel-body">
-        {% for location in service.locations %}
-            <dl class="dl-horizontal">
-                <dt><i class="fa fa-globe"></i></dt>
-                <dd>{{ location.name }}</dd>
-            </dl>
-        {% endfor %}
-        <dl class="dl-horizontal">
-            <dt><i class="fa fa-tag"></i></dt>
-            <dd>{{ service.category.name }}</dd>
-        </dl>
-        <dl class="dl-horizontal">
-            <dt><i class="fa fa-info"></i></dt>
-            <dd>{{ service.description }}</dd>
-        </dl>
+        <p>
+            {% for location in service.locations %}
+                <i class="fa fa-globe"></i> {{ location.name }}
+            {% endfor %}
+        </p>
+        <p><i class="fa fa-tag"></i> {{ service.category.name }}</p>
+        <p><i class="fa fa-info"></i> {{ service.description }}</p>
     </div>
     {% if is_granted('edit', service) or is_granted('delete', service) %}
         <div class="panel-footer">

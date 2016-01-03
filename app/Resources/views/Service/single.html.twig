@@ -9,7 +9,7 @@
             {% endfor %}
         </p>
         <p><i class="fa fa-tag"></i> {{ service.category.name }}</p>
-        <p><i class="fa fa-info"></i> {{ service.description }}</p>
+        <p>{{ service.description }}</p>
     </div>
     {% if is_granted('edit', service) or is_granted('delete', service) %}
         <div class="panel-footer">

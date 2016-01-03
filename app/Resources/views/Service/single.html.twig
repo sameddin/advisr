@@ -5,10 +5,14 @@
     <div class="panel-body">
         <p>
             {% for location in service.locations %}
-                <i class="fa fa-globe"></i> {{ location.name }}
+                <i class="fa fa-globe" data-toggle="tooltip"
+                   title="{{ 'service.location'|trans }}"></i> {{ location.name }}
             {% endfor %}
         </p>
-        <p><i class="fa fa-tag"></i> {{ service.category.name }}</p>
+        <p>
+            <i class="fa fa-tag" data-toggle="tooltip"
+               title="{{ 'service.category'|trans }}"></i> {{ service.category.name }}
+        </p>
         <p>{{ service.description|nl2br }}</p>
     </div>
     {% if is_granted('edit', service) or is_granted('delete', service) %}

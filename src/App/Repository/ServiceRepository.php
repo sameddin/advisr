@@ -31,10 +31,16 @@ class ServiceRepository extends EntityRepository
         $page = func_get_arg(1);
         $limit = func_get_arg(2);
 
-        $qb = $this->createQueryBuilder('s');
+        $qb = $this->getQueryBuilder();
         $this->applyFilter($qb, $filter);
 
         return $this->paginator->paginate($qb->getQuery(), $page, $limit);
+    }
+
+    private function getQueryBuilder()
+    {
+        return $this
+            ->createQueryBuilder('s');
     }
 
     /**

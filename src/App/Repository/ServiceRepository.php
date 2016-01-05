@@ -3,6 +3,7 @@ namespace App\Repository;
 
 use App\Entity\Service;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
@@ -31,14 +32,22 @@ class ServiceRepository extends EntityRepository
         $limit = func_get_arg(2);
 
         $qb = $this->createQueryBuilder('s');
+        $this->applyFilter($qb, $filter);
 
+        return $this->paginator->paginate($qb->getQuery(), $page, $limit);
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param array $filter
+     */
+    private function applyFilter(QueryBuilder $qb, array $filter)
+    {
         if (isset($filter['category'])) {
             $qb
                 ->andWhere('s.category = :categoryId')
                 ->setParameter('categoryId', $filter['category']);
         }
-
-        return $this->paginator->paginate($qb->getQuery(), $page, $limit);
     }
 
     /**

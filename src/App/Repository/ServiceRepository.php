@@ -49,7 +49,7 @@ class ServiceRepository extends EntityRepository
      */
     private function applyFilter(QueryBuilder $qb, array $filter)
     {
-        if (isset($filter['category'])) {
+        if (isset($filter['category']) && !empty($filter['category'])) {
             $qb
                 ->andWhere('s.category = :categoryId')
                 ->setParameter('categoryId', $filter['category']);

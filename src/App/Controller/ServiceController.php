@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use App\Entity\Category;
 use App\Entity\Service;
 use App\Form\Type\FilterType;
 use App\Form\Type\ServiceType;

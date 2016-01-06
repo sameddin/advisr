@@ -42,11 +42,6 @@ class ServiceController extends AbstractController
     {
         $filter = $request->query->all();
 
-        if ($request->get('category')) {
-            $category = $this->em->find('App:Category', $filter['category']);
-            $filter['category'] = $category;
-        }
-
         $filterForm = $this->formFactory->createNamedBuilder(null, FilterType::class, $filter, [
             'csrf_protection' => false,
         ])

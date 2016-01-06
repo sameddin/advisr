@@ -19,7 +19,8 @@ class FilterType extends AbstractType
                 'placeholder' => 'service.category.placeholder',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
-                        ->innerJoin('c.services', 's');
+                        ->innerJoin('c.services', 's')
+                        ->orderBy('c.name');
                 },
             ])
             ->add('submit', SubmitType::class, [

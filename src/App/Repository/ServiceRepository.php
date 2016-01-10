@@ -40,7 +40,9 @@ class ServiceRepository extends EntityRepository
     private function getQueryBuilder()
     {
         return $this
-            ->createQueryBuilder('s');
+            ->createQueryBuilder('s')
+            ->select('s')
+            ->leftJoin('s.locations', 'l');
     }
 
     /**
@@ -53,6 +55,12 @@ class ServiceRepository extends EntityRepository
             $qb
                 ->andWhere('s.category = :categoryId')
                 ->setParameter('categoryId', $filter['category']);
+        }
+
+        if (isset($filter['location']) && !empty($filter['location'])) {
+            $qb
+                ->andWhere('l.id IN (:locations)')
+                ->setParameter('locations', $filter['location']);
         }
     }
 

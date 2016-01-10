@@ -50,11 +50,20 @@ services:
             - App:Service
         calls:
             - [setPaginator, ["@knp_paginator"]]
+    app.repository.location_repository:
+        class: App\Repository\LocationRepository
+        arguments: [ "@doctrine.orm.entity_manager" ]
 
     app.form.no_validate_extension:
         class: App\Form\Extension\NoValidateExtension
         tags:
             - { name: form.type_extension, extended_type: Symfony\Component\Form\Extension\Core\Type\FormType }
+    app.form.type.filter_type:
+        class: App\Form\Type\FilterType
+        calls:
+            - [ setLocationRepository, [ "@app.repository.location_repository" ] ]
+        tags:
+            - { name: form.type, alias: filter }
 
     app.listener.user_listener:
         class: App\Listener\RawUserPasswordEncoder

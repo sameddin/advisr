@@ -1,3 +1,4 @@
 App\Entity\Location:
     location{1..10}:
         name: <city()>
+        parent: "@location*"

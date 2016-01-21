@@ -22,10 +22,12 @@ CREATE TABLE category
 
 CREATE TABLE location
 (
-    id   bigserial NOT NULL,
-    name varchar   NOT NULL,
+    id        bigserial NOT NULL,
+    parent_id bigint    NULL,
+    name      varchar   NOT NULL,
 
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY (parent_id) REFERENCES location(id)
 );
 
 CREATE TABLE service

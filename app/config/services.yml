@@ -86,10 +86,10 @@ services:
             - "@app.service_repository"
 
     app.service_voter:
-            class: App\Security\ServiceVoter
-            tags:
-                - { name: security.voter }
-            public: false
+        class: App\Security\ServiceVoter
+        tags:
+            - { name: security.voter }
+        public: false
 
     faker.provider.util:
         class: App\DataFixtures\Faker\Provider\UtilProvider

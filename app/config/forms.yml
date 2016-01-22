@@ -1,5 +1,0 @@
-services:
-    app.form.type.login:
-        class: App\Form\Type\LoginType
-        tags:
-            - { name: form.type, alias: login }

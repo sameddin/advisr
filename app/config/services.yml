@@ -64,6 +64,10 @@ services:
             - [ setLocationRepository, [ "@app.repository.location_repository" ] ]
         tags:
             - { name: form.type, alias: filter }
+    app.form.type.login:
+        class: App\Form\Type\LoginType
+        tags:
+            - { name: form.type, alias: login }
 
     app.listener.user_listener:
         class: App\Listener\RawUserPasswordEncoder

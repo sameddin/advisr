@@ -38,3 +38,4 @@ service.description.placeholder: Введите описание услуги
 service.category.placeholder: Выберите категорию услуги
 Previous: Предыдущая
 Next: Следующая
+Bad credentials.: Неверный логин или пароль
